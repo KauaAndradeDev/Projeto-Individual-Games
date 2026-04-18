@@ -1,5 +1,20 @@
 body {
-    background-color: #6e76e9; 
+    background: rgba(0, 0, 0, 0.4) url('./imagem/ImagemdeFundo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    padding-top: 80px;
+}
+
+p {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
 }
 
 header ul {
@@ -26,6 +41,14 @@ header a {
 
 header a:hover {
     background-color: #555;
+}
+
+header li:last-child a {
+    background-color: #4CAF50;
+}
+
+header li:last-child a:hover {
+    background-color: #45a049;
 }
 
 header img {
@@ -67,4 +90,74 @@ header {
 li {
 color :black
 
+}
+
+.games {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.games h2 {
+    font-size: 28px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: #333;
+    border-radius: 10px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    color: white;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.about {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 800px;
+}
+
+.about h2 {
+    font-size: 32px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.about img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 20px 0;
+}
+
+.about p {
+    font-size: 20px;
+    color: white;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
 }
