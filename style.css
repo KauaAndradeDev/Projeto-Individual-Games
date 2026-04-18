@@ -19,12 +19,22 @@ header li {
 header a {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    padding: 10px;
-
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 5px;
 }
 
 header a:hover {
-    background-color: #ffffff;
+    background-color: #555;
+}
+
+header img {
+    width: 40px;
+    height: auto;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 header {
