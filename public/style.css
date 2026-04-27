@@ -181,11 +181,11 @@ color :black
 }
 
 .login .card {
-    width: 100%;
+    width: 110%;
     background: rgba(255, 255, 255, 0.97);
-    border-radius: 24px;
-    padding: 36px 28px;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+    border-radius: 34px;
+    padding: 36px 30px;
+    box-shadow: 0 24px 90px rgba(0, 0, 0, 0.25);
     color: #111;
 }
 
@@ -199,7 +199,7 @@ color :black
 .login .formulario {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 5px;
 }
 
 .login .campo {
@@ -217,7 +217,7 @@ color :black
 .login .campo input,
 .login .campo select {
     width: 100%;
-    padding: 14px 16px;
+    padding: 14px 2px;
     border: 1px solid #c4c4c4;
     border-radius: 14px;
     background: #fff;
@@ -228,7 +228,7 @@ color :black
 .login .campo input:focus,
 .login .campo select:focus {
     outline: none;
-    border-color: #ED145B;
+    border-color: #2009f0;
     box-shadow: 0 0 0 4px rgba(237, 20, 91, 0.12);
 }
 
@@ -237,7 +237,7 @@ color :black
     padding: 14px 0;
     border: none;
     border-radius: 14px;
-    background: #ED145B;
+    background: #1602f3;
     color: white;
     font-size: 16px;
     font-weight: 700;
@@ -247,7 +247,7 @@ color :black
 
 .login .botao:hover {
     transform: translateY(-1px);
-    background: #c1144a;
+    background: #7a69f8;
 }
 
 .login p {
@@ -258,14 +258,14 @@ color :black
 }
 
 .login p a {
-    color: #ED145B;
+    color: #4702db;
     font-weight: 700;
 }
 
 .card_erro {
     display: none;
     background: #fff4f4;
-    color: #9d1f2d;
+    color: #3c07d0;
     border-radius: 16px;
     border: 1px solid #f2c2c2;
     padding: 14px 16px;
