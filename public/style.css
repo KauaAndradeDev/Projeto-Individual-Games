@@ -1,5 +1,5 @@
 body {
-    background-color: #000; /* ou outra cor base */
+    background-color: #000; 
     padding-top: 80px;
 }
 
@@ -150,7 +150,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.45) url('./imagem/ImagemdeFundo.jpg') center/cover no-repeat;
+    background: rgba(0, 0, 0, 0.45) url('./imagem/imagemdefundoGame.png') center/cover no-repeat;
 }
 
 .login .container {
@@ -256,22 +256,15 @@ header {
 .card_erro #mensagem_erro {
     font-size: 14px;
 }
+.banner {
+    background: url('./imagem/imagemdefundoGame.png') center/cover no-repeat;
+    padding: 60px 20px;
+    color: white;
+}
 
-@media (max-width: 720px) {
-    .login {
-        padding: 100px 16px 30px;
-    }
-
-    .login .card {
-        padding: 28px 22px;
-    }
-
-    .header {
-        width: 92%;
-    }
-
-    header ul {
-        gap: 8px;
-        flex-wrap: wrap;
-    }
+.conteudo {
+    background-color: #111;
+    padding: 40px;
+    color: white;
+    text-align: center;
 }
