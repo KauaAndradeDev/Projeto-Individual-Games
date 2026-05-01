@@ -14,11 +14,11 @@ p {
   font-size: 24px;
   color: white;
   font-weight: bold;
-  background-color: #333;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 600px;
-  margin: 20px auto;
+  background: none;
+  padding: 0;
+  max-width: 700px;
+  margin: 10px auto;
+  line-height: 1.6;
 }
 
 h1 {
@@ -34,54 +34,13 @@ h1 {
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 32px;
   color: white;
   font-weight: bold;
-  background-color: #333;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 600px;
+  background: none;
+  padding: 0;
   margin: 20px auto;
   text-align: center;
-}
-
-h2 a {
-  color: rgb(2, 162, 255);
-}
-
-header ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-header li {
-  margin-right: 20px;
-}
-
-header a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  background: #333;
-  border-radius: 5px;
-}
-
-header a:hover {
-  background: #555;
-}
-
-header li:last-child a {
-  background: rgb(2, 162, 255);
-}
-
-header img {
-  width: 40px;
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 header {
@@ -98,15 +57,45 @@ header {
 
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  border-radius: 35px;
-  padding: 5px 15px;
   width: 80%;
+  margin: 15px auto;
+  padding: 12px 25px;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 40px;
+  position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  background: #0f0e0d;
-  box-shadow: 0px 3px 5px rgb(122,122,122);
+}
+
+.header img {
+  width: 45px;
+}
+
+.header nav {
+  display: flex;
+  gap: 20px;
+}
+
+.header nav a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: transparent;
+  transition: 0.3s;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header nav a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.header nav a.login,
+.header nav a.btn {
+  background: linear-gradient(45deg, #3b82f6, #2563eb);
 }
 
 .banner {
@@ -133,6 +122,7 @@ header {
 .container {
   width: 100%;
   max-width: 420px;
+  padding: 0 10px;
 }
 
 .card {
@@ -206,11 +196,6 @@ header {
   color: #fff;
 }
 
-
-
-  .container {
-    padding: 0 10px;
-  }
 .hero {
   height: 100vh;
   background: url('./imagem/imagemdefundoGame.png') center/cover no-repeat;
@@ -274,4 +259,25 @@ header {
 .secao h2 {
   margin-bottom: 20px;
   font-size: 28px;
+}
+
+.secao p {
+  opacity: 0;
+  transform: translateY(-80px);
+  animation: cairTexto 1s ease forwards;
+}
+
+#sobre p { animation-delay: 0.3s; }
+#projeto p { animation-delay: 0.5s; }
+#contato p { animation-delay: 0.7s; }
+
+@keyframes cairTexto {
+  0% {
+    transform: translateY(-80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
