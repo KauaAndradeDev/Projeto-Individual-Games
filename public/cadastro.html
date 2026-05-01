@@ -2,75 +2,87 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
   <title>Games | Cadastro</title>
 
   <script src="./js/sessao.js"></script>
 
   <link rel="stylesheet" href="style.css">
- 
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<header class="header">
-        <img src="./imagem/GamesLogan.png" alt="Logo">
-        <ul>
-            <li><a href="index.html">Inicial</a></li>
-  
-            <li><a href="login.html">Login</a></li>
-        </ul>
-    </header>
 
+  <!-- HEADER -->
+  <header class="header">
+    <img src="./imagem/GamesLogan.png" alt="Logo">
+    <ul>
+      <li><a href="index.html">Inicial</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </header>
+
+  <!-- OVERLAY (BLUR) -->
+  <div class="overlay"></div>
+
+  <!-- CADASTRO -->
   <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
+
     <div class="container">
+
       <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
+
+        <h2>Crie sua conta 🚀</h2>
+
+        <!-- ERRO -->
+        <div class="alerta_erro">
+          <div class="card_erro" id="cardErro">
+            <span id="mensagem_erro"></span>
           </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
         </div>
-        <div id="div_erros_login"></div>
+
+        <div class="formulario">
+
+          <div class="campo">
+            <span>Nome</span>
+            <input id="nome_input" type="text" placeholder="Seu nome">
+          </div>
+
+          <div class="campo">
+            <span>E-mail</span>
+            <input id="email_input" type="text" placeholder="seu@email.com">
+          </div>
+
+          <div class="campo">
+            <span>Senha</span>
+            <input id="senha_input" type="password" placeholder="••••••">
+          </div>
+
+          <div class="campo">
+            <span>Confirmar senha</span>
+            <input id="confirmacao_senha_input" type="password" placeholder="••••••">
+          </div>
+
+          <button class="botao" onclick="cadastrar()">Cadastrar</button>
+
+        </div>
+
+        <p class="cadastro">
+          Já tem conta? <a href="login.html">Fazer login</a>
+        </p>
+
       </div>
+
     </div>
+
   </div>
 
-  <!--footer inicio-->
+  <!-- FOOTER -->
   <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
-    </div>
+    <h4>Feito com ❤️ por aluno SPTech</h4>
+    <span class="version">v1.0.0</span>
   </div>
-  <!--footer fim-->
+
 </body>
 
 </html>
