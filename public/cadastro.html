@@ -20,7 +20,7 @@
 
     <ul>
      
-        <li><a href="login.html" class="btn-login">Login</a></li>
+   
     </ul>
 </header>
 
@@ -108,6 +108,7 @@
      
     ) {
       cardErro.style.display = "block";
+      cardErro.classList.remove("sucesso");
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
@@ -137,6 +138,7 @@
 
         if (resposta.ok) {
           cardErro.style.display = "block";
+          cardErro.classList.add("sucesso");
 
           mensagem_erro.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
