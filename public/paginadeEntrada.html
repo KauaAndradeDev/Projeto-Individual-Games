@@ -7,6 +7,7 @@
 
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="./js/sessao.js"></script>
 </head>
 
 <body>
@@ -18,12 +19,51 @@
 
     <nav>
         <a href="index.html">Início</a>
-        <a href="login.html">Login</a>
-        <a href="cadastro.html">Cadastro</a>
+        <a href="#" onclick="limparSessao()">Sair</a>
     </nav>
 </header>
 
-<div class="login">
+<section class="carousel">
+    <nav class="carousel-nav">
+        <a href="#top5">Top 5</a>
+    </nav>
+    <h2>Jogos em Destaque</h2>
+    <div class="carousel-container">
+        <div class="carousel-wrapper" id="carouselWrapper">
+            <div class="carousel-slide">
+                <div class="game-card">
+                    <img src="./imagem/Ben10.jpg" alt="Ben10">
+                    <h3>Ben10</h3>
+                </div>
+                <div class="game-card">
+                    <img src="./imagem/dragonballbudokai.jpg" alt="Dragon Ball Budokai">
+                    <h3>Dragon Ball Budokai</h3>
+                </div>
+                <div class="game-card">
+                    <img src="./imagem/godofwar.jpg" alt="God of War">
+                    <h3>God of War</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="game-card">
+                    <img src="./imagem/gtaSanAndreas.png" alt="GTA San Andreas">
+                    <h3>GTA San Andreas</h3>
+                </div>
+                <div class="game-card">
+                    <img src="./imagem/mortalKombar.jpg" alt="Mortal Kombat">
+                    <h3>Mortal Kombat</h3>
+                </div>
+                <div class="game-card">
+                    <img src="./imagem/naruto.jpg" alt="Naruto">
+                    <h3>Naruto</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+</section>
+
+<div class="login" id="top5">
 
     <div class="container">
 
@@ -78,5 +118,26 @@ function atualizar() {
         lista.innerHTML += `<p>${i + 1}º - ${jogos[i]}</p>`
     }
 }
+
+// Carousel functionality
+let currentSlide = 0;
+const totalSlides = 2; // Number of slides
+const wrapper = document.getElementById('carouselWrapper');
+
+function showSlide(index) {
+    wrapper.style.transform = `translateX(-${index * 100}%)`;
+    currentSlide = index;
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}
+
+// Auto slide every 5 seconds
+setInterval(nextSlide, 5000);
+
+// Initialize carousel
+showSlide(currentSlide);
 
 </script>
