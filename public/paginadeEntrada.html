@@ -100,6 +100,7 @@ let jogos = []
 
 function adicionar() {
     let nome = input_jogo.value
+    lista.innerHTML = ""
 
     if (nome == "") {
         alert("Digite um jogo")
@@ -122,7 +123,7 @@ function atualizar() {
 
 
 let currentSlide = 0;
-const totalSlides = 2; // Number of slides
+const totalSlides = 2; 
 const wrapper = document.getElementById('carouselWrapper');
 
 function showSlide(index) {
