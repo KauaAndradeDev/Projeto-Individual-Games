@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<title>KL Games | Quiz Ben 10</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #081520;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#container {
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#btnIniciarQuiz { background: #00bcd4; }
+#btnSubmeter { background: #4caf50; color: white; }
+#btnProx { background: #2196f3; color: white; }
+#btnTentar { background: #ff9800; color: white; }
+
+.card {
+    background: #0f1f2e;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+.option {
+    display: block;
+    text-align: left;
+    margin: 10px 0;
+    padding: 8px;
+    background: #132b3c;
+    border-radius: 6px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+    <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
+    <div id="jogo" class="card" style="display:none">
+
+        <p>Questão <span id="num"></span>/<span id="total"></span></p>
+
+        <h3 id="pergunta"></h3>
+
+        <div id="opcoes"></div>
+
+        <button id="btnSubmeter" onclick="responder()">Responder</button>
+        <button id="btnProx" onclick="proxima()" style="display:none">Próxima</button>
+
+    </div>
+
+    <div id="final" class="card" style="display:none">
+        <h2>Resultado</h2>
+        <p id="resultado"></p>
+        <button id="btnTentar" onclick="location.reload()">Tentar novamente</button>
+    </div>
+
+</div>
+
+<script>
+
+const perguntas = [
+    { pergunta: "Qual é o dispositivo do Ben?", opcoes: ["Omnitrix","Plumbers Badge","Proto-Tool","Null Void"], correta: 0 },
+    { pergunta: "Quem é a prima do Ben?", opcoes: ["Gwen","Kevin","Max","Julie"], correta: 0 },
+    { pergunta: "Primeiro alien?", opcoes: ["Four Arms","Heatblast","XLR8","Diamondhead"], correta: 1 },
+    { pergunta: "Vilão principal?", opcoes: ["Vilgax","Animo","Hex","Ghost"], correta: 0 },
+    { pergunta: "Ghostfreak é?", opcoes: ["Ectonurite","Pyronite","Petrosapien","Galvan"], correta: 0 }
+];
+
+let atual = 0;
+let acertos = 0;
+
+function iniciarQuiz() {
+    if (!sessionStorage.ID_USUARIO) {
+        alert("Faça login primeiro");
+        window.location = "login.html";
+        return;
+    }
+
+    btnIniciarQuiz.style.display = "none";
+    jogo.style.display = "block";
+    total.innerText = perguntas.length;
+
+    carregar();
+}
+
+function carregar() {
+    let q = perguntas[atual];
+
+    num.innerText = atual + 1;
+    pergunta.innerText = q.pergunta;
+
+    opcoes.innerHTML = "";
+
+    q.opcoes.forEach((op, i) => {
+        opcoes.innerHTML += `
+            <label class="option">
+                <input type="radio" name="opcao" value="${i}">
+                ${op}
+            </label>
+        `;
+    });
+}
+
+function responder() {
+    let escolha = document.querySelector('input[name="opcao"]:checked');
+
+    if (!escolha) {
+        alert("Escolha uma opção!");
+        return;
+    }
+
+    if (parseInt(escolha.value) === perguntas[atual].correta) {
+        acertos++;
+    }
+
+    btnSubmeter.style.display = "none";
+    btnProx.style.display = "inline";
+}
+
+function proxima() {
+    atual++;
+
+    if (atual < perguntas.length) {
+        carregar();
+        btnSubmeter.style.display = "inline";
+        btnProx.style.display = "none";
+    } else {
+        finalizarJogo(); // 🔥 CORRIGIDO
+    }
+}
+
+function finalizarJogo() {
+    console.log("FINALIZOU O QUIZ");
+
+    let nota = (acertos / perguntas.length) * 10;
+
+    jogo.style.display = "none";
+    final.style.display = "block";
+
+    resultado.innerText = `Você acertou ${acertos} de ${perguntas.length} | Nota: ${nota.toFixed(1)}`;
+
+    console.log("ENVIANDO:", sessionStorage.ID_USUARIO, nota);
+
+    fetch("/quiz/salvarResultado", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            idUsuario: sessionStorage.ID_USUARIO,
+            quiz: "Ben10",
+            nota: nota
+        })
+    })
+    .then(res => res.text())
+    .then(res => console.log("RESPOSTA:", res))
+    .catch(err => console.log("ERRO:", err));
+}
+
+</script>
+
+</body>
+</html>
