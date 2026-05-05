@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #081520;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#container {
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#btnIniciarQuiz { background: #00bcd4; }
+#btnSubmeter { background: #4caf50; color: white; }
+#btnProx { background: #2196f3; color: white; }
+#btnTentar { background: #ff9800; color: white; }
+
+.card {
+    background: #0f1f2e;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+.option {
+    display: block;
+    text-align: left;
+    margin: 10px 0;
+    padding: 8px;
+    background: #132b3c;
+    border-radius: 6px;
+    cursor: pointer;
+}

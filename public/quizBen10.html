@@ -4,56 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title>KL Games | Quiz Ben 10</title>
+ <link rel="stylesheet" href="stylequiz.css">
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #081520;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-#container {
-    width: 90%;
-    max-width: 600px;
-    text-align: center;
-}
-
-button {
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-#btnIniciarQuiz { background: #00bcd4; }
-#btnSubmeter { background: #4caf50; color: white; }
-#btnProx { background: #2196f3; color: white; }
-#btnTentar { background: #ff9800; color: white; }
-
-.card {
-    background: #0f1f2e;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 15px;
-}
-
-.option {
-    display: block;
-    text-align: left;
-    margin: 10px 0;
-    padding: 8px;
-    background: #132b3c;
-    border-radius: 6px;
-    cursor: pointer;
-}
-</style>
 </head>
 
 <body>
@@ -86,11 +38,11 @@ button {
 <script>
 
 const perguntas = [
-    { pergunta: "Qual é o dispositivo do Ben?", opcoes: ["Omnitrix","Plumbers Badge","Proto-Tool","Null Void"], correta: 0 },
+    { pergunta: "Qual é o dispositivo do Ben?", opcoes: ["Omnitrix","Relogio do ben","Portador","Transforma"], correta: 0 },
     { pergunta: "Quem é a prima do Ben?", opcoes: ["Gwen","Kevin","Max","Julie"], correta: 0 },
-    { pergunta: "Primeiro alien?", opcoes: ["Four Arms","Heatblast","XLR8","Diamondhead"], correta: 1 },
+    { pergunta: "Primeiro alien?", opcoes: ["4 braços","Lança Chamas","XLR8","Diamante"], correta: 1 },
     { pergunta: "Vilão principal?", opcoes: ["Vilgax","Animo","Hex","Ghost"], correta: 0 },
-    { pergunta: "Ghostfreak é?", opcoes: ["Ectonurite","Pyronite","Petrosapien","Galvan"], correta: 0 }
+    { pergunta: "Quem é o alien mais forte?", opcoes: ["Alienx","Lança Chamas","XLR8","Não existe mais forte"], correta: 0 }
 ];
 
 let atual = 0;
@@ -152,7 +104,7 @@ function proxima() {
         btnSubmeter.style.display = "inline";
         btnProx.style.display = "none";
     } else {
-        finalizarJogo(); // 🔥 CORRIGIDO
+        finalizarJogo(); 
     }
 }
 
