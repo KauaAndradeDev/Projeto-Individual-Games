@@ -3,7 +3,7 @@ var router = express.Router();
 var database = require("../database/config");
 
 router.post("/salvarResultado", function (req, res) {
-    console.log("CHEGOU NA ROTA ✅");
+    console.log("CHEGOU NA ROTA ");
 
     var idUsuario = req.body.idUsuario;
     var quiz = req.body.quiz;
