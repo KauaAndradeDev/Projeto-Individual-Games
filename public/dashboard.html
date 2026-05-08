@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <a href="index.html" class="logo">
+            <img src="./imagem/GamesLogan.png">
+        </a>
+
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="./dashboard.html">Dashboard</a>
+            <a href="#" onclick="limparSessao()">Sair</a>
+        </nav>
+
+    </header>
+
+    <h1>Dashboard de Desempenho dos Jogos</h1>
+
+    <div style="width: 700px; height: 400px; margin: auto;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        const ctx = document.getElementById('myChart');
+
+        buscarMaiorNota();
+
+        function buscarMaiorNota() {
+
+            fetch("/quiz/maiorNota")
+
+                .then(function (resposta) {
+                    return resposta.json();
+                })
+
+                .then(function (dados) {
+
+                    var maiorNota = dados[0].maiorNota;
+
+                    criarGrafico(maiorNota);
+
+                })
+
+                .catch(function (erro) {
+                    console.log("Erro:", erro);
+                });
+
+        }
+
+        function criarGrafico(maiorNota) {
+
+            new Chart(ctx, {
+
+                type: 'bar',
+
+                data: {
+
+                    labels: ['Ben 10'],
+
+                    datasets: [{
+                        label: 'Maior Nota do Quiz',
+                        data: [maiorNota],
+                        borderWidth: 2
+                    }]
+                },
+
+                options: {
+
+                    responsive: true,
+                    maintainAspectRatio: false,
+
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    },
+
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>
