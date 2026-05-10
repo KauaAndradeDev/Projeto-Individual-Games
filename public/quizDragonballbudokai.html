@@ -2,141 +2,326 @@
 <html lang="pt-br">
 
 <head>
-<meta charset="UTF-8">
-<title>KL Games | Quiz Ben 10</title>
- <link rel="stylesheet" href="stylequiz.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Ben 10</title>
+    <link rel="stylesheet" href="stylequiz.css">
 </head>
 
 <body>
 
-<div id="container">
+    <div id="pontuacaoEJogo">
 
-    <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
 
-    <div id="jogo" class="card" style="display:none">
+            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
 
-        <p>Questão <span id="num"></span>/<span id="total"></span></p>
+                <span>
+                    Quantidade de acertos:
+                    <span id="spanCertas">0</span>
+                </span>
 
-        <h3 id="pergunta"></h3>
+                <br>
 
-        <div id="opcoes"></div>
+                <span>
+                    Quantidade de erros:
+                    <span id="spanErradas">0</span>
+                </span>
 
-        <button id="btnSubmeter" onclick="responder()">Responder</button>
-        <button id="btnProx" onclick="proxima()" style="display:none">Próxima</button>
+            </div>
+
+            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+
+                <span id="pontuacaoFinal">
+
+                    Pontuação Final:
+                    <span id="spanPontuacaoFinal"></span>
+
+                </span>
+
+                <br>
+
+                <span id="msgFinal"></span>
+
+            </div>
+
+        </div>
+
+        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+
+            <div id="infoQuestao" class="padding-8">
+
+                <span>
+
+                    Questão atual:
+                    <span id="spanNumeroDaQuestaoAtual"></span>
+
+                    de
+
+                    <span id="qtdQuestoes"></span>
+
+                    questões
+
+                </span>
+
+            </div>
+
+            <br>
+
+            <div id="perguntaDaQuestaoAtual" class="padding-8">
+
+                <span id="spanQuestaoExibida"></span>
+
+            </div>
+
+            <br>
+
+            <div id="infoAlternativas" class="padding-8">
+
+                <span>
+                    Escolha uma opção:
+                </span>
+
+            </div>
+
+            <br>
+
+            <div id="opcoes" class="flex-colunar padding-8">
+
+                <span>
+
+                    <input type="radio" id="primeiraOpcao" name="option" value="alternativaA">
+
+                    <label for="primeiraOpcao" id="labelOpcaoUm"></label>
+
+                </span>
+
+                <br>
+
+                <span>
+
+                    <input type="radio" id="segundaOpcao" name="option" value="alternativaB">
+
+                    <label for="segundaOpcao" id="labelOpcaoDois"></label>
+
+                </span>
+
+                <br>
+
+                <span>
+
+                    <input type="radio" id="terceiraOpcao" name="option" value="alternativaC">
+
+                    <label for="terceiraOpcao" id="labelOpcaoTres"></label>
+
+                </span>
+
+                <br>
+
+                <span>
+
+                    <input type="radio" id="quartaOpcao" name="option" value="alternativaD">
+
+                    <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
+
+                </span>
+
+            </div>
+
+            <br>
+
+            <div id="botoes" class="padding-8">
+
+                <button onclick="submeter()">
+                    Responder
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <div id="final" class="card" style="display:none">
-        <h2>Resultado</h2>
-        <p id="resultado"></p>
-        <button id="btnTentar" onclick="location.reload()">Tentar novamente</button>
-    </div>
+</body>
 
-</div>
+</html>
 
 <script>
 
-const perguntas = [
-    { pergunta: "Sayajin2", opcoes: ["Omnitrix","Relogio do ben","Portador","Transforma"], correta: 0 },
-    { pergunta: "Quem é a prima do Ben?", opcoes: ["Gwen","Kevin","Max","Julie"], correta: 0 },
-    { pergunta: "Primeiro alien?", opcoes: ["4 braços","Lança Chamas","XLR8","Diamante"], correta: 1 },
-    { pergunta: "Vilão principal?", opcoes: ["Vilgax","Animo","Hex","Ghost"], correta: 0 },
-    { pergunta: "Quem é o alien mais forte?", opcoes: ["Alienx","Lança Chamas","XLR8","Não existe mais forte"], correta: 0 }
-];
+if (!sessionStorage.ID_USUARIO) {
 
-let atual = 0;
-let acertos = 0;
+    alert("Faça login primeiro")
 
-function iniciarQuiz() {
-    if (!sessionStorage.ID_USUARIO) {
-        alert("Faça login primeiro");
-        window.location = "login.html";
-        return;
-    }
-
-    btnIniciarQuiz.style.display = "none";
-    jogo.style.display = "block";
-    total.innerText = perguntas.length;
-
-    carregar();
+    window.location = "login.html"
 }
 
-function carregar() {
-    let q = perguntas[atual];
+pontuacao.style.display = "flex"
+jogo.style.display = "flex"
+pontuacaoFinalJogo.style.display = "none"
 
-    num.innerText = atual + 1;
-    pergunta.innerText = q.pergunta;
+const listaDeQuestoes = [
 
-    opcoes.innerHTML = "";
+    {
+        pergunta: "O que é o Omnitrix?",
+        alternativaA: "Relógio",
+        alternativaB: "Carro",
+        alternativaC: "Espada",
+        alternativaD: "Alien",
+        alternativaCorreta: "alternativaA"
+    },
 
-    q.opcoes.forEach((op, i) => {
-        opcoes.innerHTML += `
-            <label class="option">
-                <input type="radio" name="opcao" value="${i}">
-                ${op}
-            </label>
-        `;
-    });
-}
+    {
+        pergunta: "Quem é a prima do Ben?",
+        alternativaA: "Julie",
+        alternativaB: "Gwen",
+        alternativaC: "Kai",
+        alternativaD: "Charmcaster",
+        alternativaCorreta: "alternativaB"
+    },
 
-function responder() {
-    let escolha = document.querySelector('input[name="opcao"]:checked');
-
-    if (!escolha) {
-        alert("Escolha uma opção!");
-        return;
+    {
+        pergunta: "Qual alien é mais rápido?",
+        alternativaA: "4 braços",
+        alternativaB: "XLR8",
+        alternativaC: "Diamante",
+        alternativaD: "Ultra T",
+        alternativaCorreta: "alternativaB"
     }
 
-    if (parseInt(escolha.value) === perguntas[atual].correta) {
-        acertos++;
+]
+
+let numeroDaQuestaoAtual = 0
+let certas = 0
+let erradas = 0
+
+qtdQuestoes.innerHTML = listaDeQuestoes.length
+
+spanNumeroDaQuestaoAtual.innerHTML = 1
+
+spanQuestaoExibida.innerHTML =
+listaDeQuestoes[0].pergunta
+
+labelOpcaoUm.innerHTML =
+listaDeQuestoes[0].alternativaA
+
+labelOpcaoDois.innerHTML =
+listaDeQuestoes[0].alternativaB
+
+labelOpcaoTres.innerHTML =
+listaDeQuestoes[0].alternativaC
+
+labelOpcaoQuatro.innerHTML =
+listaDeQuestoes[0].alternativaD
+
+function submeter() {
+
+    let opcoes = document.getElementsByName("option")
+
+    let respostaEscolhida = ""
+
+    for (let i = 0; i < opcoes.length; i++) {
+
+        if (opcoes[i].checked) {
+
+            respostaEscolhida = opcoes[i].value
+        }
     }
 
-    btnSubmeter.style.display = "none";
-    btnProx.style.display = "inline";
-}
+    if (respostaEscolhida == "") {
 
-function proxima() {
-    atual++;
+        alert("Escolha uma alternativa")
 
-    if (atual < perguntas.length) {
-        carregar();
-        btnSubmeter.style.display = "inline";
-        btnProx.style.display = "none";
+        return
+    }
+
+    if (
+        respostaEscolhida ==
+        listaDeQuestoes[numeroDaQuestaoAtual].alternativaCorreta
+    ) {
+
+        certas++
+
+        spanCertas.innerHTML = certas
+
     } else {
-        finalizarJogo(); 
+
+        erradas++
+
+        spanErradas.innerHTML = erradas
     }
+
+    numeroDaQuestaoAtual++
+
+    if (numeroDaQuestaoAtual < listaDeQuestoes.length) {
+
+        spanNumeroDaQuestaoAtual.innerHTML =
+        numeroDaQuestaoAtual + 1
+
+        spanQuestaoExibida.innerHTML =
+        listaDeQuestoes[numeroDaQuestaoAtual].pergunta
+
+        labelOpcaoUm.innerHTML =
+        listaDeQuestoes[numeroDaQuestaoAtual].alternativaA
+
+        labelOpcaoDois.innerHTML =
+        listaDeQuestoes[numeroDaQuestaoAtual].alternativaB
+
+        labelOpcaoTres.innerHTML =
+        listaDeQuestoes[numeroDaQuestaoAtual].alternativaC
+
+        labelOpcaoQuatro.innerHTML =
+        listaDeQuestoes[numeroDaQuestaoAtual].alternativaD
+
+        for (let i = 0; i < opcoes.length; i++) {
+
+            opcoes[i].checked = false
+        }
+
+    } else {
+
+        finalizarJogo()
+    }
+
 }
 
 function finalizarJogo() {
-    console.log("FINALIZOU O QUIZ");
 
-    let nota = (acertos / perguntas.length) * 10;
+    jogo.style.display = "none"
 
-    jogo.style.display = "none";
-    final.style.display = "block";
+    pontuacaoFinalJogo.style.display = "flex"
 
-    resultado.innerText = `Você acertou ${acertos} de ${perguntas.length} | Nota: ${nota.toFixed(1)}`;
+    let nota = (certas / listaDeQuestoes.length) * 10
 
-    console.log("ENVIANDO:", sessionStorage.ID_USUARIO, nota);
+    spanPontuacaoFinal.innerHTML = nota.toFixed(1)
+
+    msgFinal.innerHTML = `
+    
+    Você acertou ${certas} de ${listaDeQuestoes.length}
+    
+    <br><br>
+
+    Nota: ${nota.toFixed(1)}
+    
+    `
 
     fetch("/quiz/salvarResultado", {
+
         method: "POST",
+
         headers: {
             "Content-Type": "application/json"
         },
+
         body: JSON.stringify({
+
             idUsuario: sessionStorage.ID_USUARIO,
-            quiz: "Dragonballbudokai",
+            quiz: "Ben10",
             nota: nota
+
         })
+
     })
-    .then(res => res.text())
-    .then(res => console.log("RESPOSTA:", res))
-    .catch(err => console.log("ERRO:", err));
+
 }
 
 </script>
-
-</body>
-</html>
