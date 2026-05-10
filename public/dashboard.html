@@ -35,72 +35,68 @@
 
     <script>
 
-        const ctx = document.getElementById('myChart');
+       const ctx = document.getElementById('myChart');
 
-        buscarMaiorNota();
+buscarMaiorNota();
 
-        function buscarMaiorNota() {
+function buscarMaiorNota() {
 
-            fetch("/quiz/maiorNota")
+    fetch("/quiz/maiorNota")
 
-                .then(function (resposta) {
-                    return resposta.json();
-                })
+        .then(function (resposta) {
+            return resposta.json();
+        })
 
-                .then(function (dados) {
+        .then(function (dados) {
 
-                    var notas = [];
-                    var nomes = [];
+            var notas = [];
 
-                    for (var i = 0; i < dados.length; i++) {
+            for (var i = 0; i < dados.length; i++) {
+                notas.push(dados[i].maiorNota);
+            }
 
-                        nomes.push(dados[i].nome_quiz);
-                        notas.push(dados[i].maiorNota);
+            criarGrafico(notas);
 
-                    }
+        })
 
-                    criarGrafico(nomes, notas);
+        .catch(function (erro) {
+            console.log("Erro:", erro);
+        });
 
-                })
+}
 
-                .catch(function (erro) {
-                    console.log("Erro:", erro);
-                });
+function criarGrafico(notas) {
 
-        }
+    new Chart(ctx, {
 
-        function criarGrafico(nomes, notas) {
+        type: 'bar',
 
-            new Chart(ctx, {
+        data: {
 
-                type: 'bar',
+            labels: ['Ben10', 'Dragonballbudokai'],
 
-                data: {
+            datasets: [{
+                label: 'Maior Nota dos Quizzes',
+                data: notas,
+                borderWidth: 2
+            }]
+        },
 
-                    labels: nomes,
+        options: {
 
-                    datasets: [{
-                        label: 'Maior Nota dos Quizzes',
-                        data: notas,
-                        borderWidth: 2
-                    }]
-                },
+            responsive: true,
+            maintainAspectRatio: false,
 
-                options: {
-
-                    responsive: true,
-                    maintainAspectRatio: false,
-
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 10
-                        }
-                    }
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 10
                 }
-            });
-
+            }
         }
+    });
+
+}
     </script>
 
 </body>
