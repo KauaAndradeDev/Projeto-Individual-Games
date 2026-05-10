@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GodofWar</title>
+
+    <link rel="stylesheet" href="stylequiz.css">
+
+</head>
+
+<body>
+
+    <div id="container">
+
+        <div id="jogo" class="card">
+
+            <p>
+
+                Questão
+                <span id="num"></span>
+                /
+                <span id="total"></span>
+
+            </p>
+
+            <h2 id="pergunta"></h2>
+
+            <div id="opcoes">
+
+                <label>
+
+                    <input type="radio" name="opcao" value="0">
+
+                    <span id="op1"></span>
+
+                </label>
+
+                <label>
+
+                    <input type="radio" name="opcao" value="1">
+
+                    <span id="op2"></span>
+
+                </label>
+
+                <label>
+
+                    <input type="radio" name="opcao" value="2">
+
+                    <span id="op3"></span>
+
+                </label>
+
+                <label>
+
+                    <input type="radio" name="opcao" value="3">
+
+                    <span id="op4"></span>
+
+                </label>
+
+            </div>
+
+            <button onclick="responder()">
+
+                Responder
+
+            </button>
+
+        </div>
+
+        <div id="final" class="card" style="display: none;">
+
+            <h2>Resultado</h2>
+
+            <p id="resultado"></p>
+
+            <button onclick="location.reload()">
+
+                Refazer Quiz
+
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+if (!sessionStorage.ID_USUARIO) {
+
+    alert("Faça login primeiro")
+
+    window.location = "login.html"
+}
+
+const perguntas = [
+
+    {
+        pergunta: "Quem é o protagonista de God of War?",
+        opcoes: ["Atreus", "Zeus", "Kratos", "Ares"],
+        correta: 2
+    },
+
+    {
+        pergunta: "Qual arma clássica Kratos usa no primeiro jogo?",
+        opcoes: ["Espada de Atena", "Lâminas do Caos", "Machado Leviatã", "Tridente de Poseidon"],
+        correta: 1
+    },
+
+    {
+        pergunta: "Qual mitologia é usada em God of War (PS2)?",
+        opcoes: ["Nórdica", "Egípcia", "Grega", "Japonesa"],
+        correta: 2
+    },
+
+    {
+        pergunta: "Quem é o principal vilão do God of War 1?",
+        opcoes: ["Zeus", "Hades", "Ares", "Poseidon"],
+        correta: 2
+    },
+
+    {
+        pergunta: "O que Kratos busca no primeiro jogo?",
+        opcoes: ["Vingança contra Zeus", "Salvar Atreus", "Se tornar deus da guerra", "Derrotar Thor"],
+        correta: 2
+    }
+
+];
+
+let atual = 0
+
+let acertos = 0
+
+total.innerHTML = perguntas.length
+
+carregarPergunta()
+
+function carregarPergunta() {
+
+    pergunta.innerHTML =
+    perguntas[atual].pergunta
+
+    num.innerHTML =
+    atual + 1
+
+    op1.innerHTML =
+    perguntas[atual].opcoes[0]
+
+    op2.innerHTML =
+    perguntas[atual].opcoes[1]
+
+    op3.innerHTML =
+    perguntas[atual].opcoes[2]
+
+    op4.innerHTML =
+    perguntas[atual].opcoes[3]
+}
+
+function responder() {
+
+    let opcoes =
+    document.getElementsByName("opcao")
+
+    let respostaEscolhida = -1
+
+    for (let i = 0; i < opcoes.length; i++) {
+
+        if (opcoes[i].checked) {
+
+            respostaEscolhida =
+            opcoes[i].value
+        }
+    }
+
+    if (respostaEscolhida == -1) {
+
+        alert("Escolha uma opção!")
+
+        return
+    }
+
+    if (
+        respostaEscolhida ==
+        perguntas[atual].correta
+    ) {
+
+        acertos++
+    }
+
+    atual++
+
+    for (let i = 0; i < opcoes.length; i++) {
+
+        opcoes[i].checked = false
+    }
+
+    if (atual < perguntas.length) {
+
+        carregarPergunta()
+
+    } else {
+
+        finalizarJogo()
+    }
+
+}
+
+function finalizarJogo() {
+
+    let nota =
+    (acertos / perguntas.length) * 10
+
+    jogo.style.display = "none"
+
+    final.style.display = "block"
+
+    resultado.innerHTML = `
+
+    Você acertou ${acertos}
+    de ${perguntas.length}
+
+    <br><br>
+
+    Sua nota foi:
+    ${nota.toFixed(1)}
+
+    `
+
+    fetch("/quiz/salvarResultado", {
+
+        method: "POST",
+
+        headers: {
+
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+
+            idUsuario:
+            sessionStorage.ID_USUARIO,
+
+            quiz: "Godofwar",
+
+            nota: nota
+
+        })
+
+    })
+
+}
+
+</script>
