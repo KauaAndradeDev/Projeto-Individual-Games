@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleDash.css">
 </head>
 
 <body>
@@ -49,9 +49,17 @@
 
                 .then(function (dados) {
 
-                    var maiorNota = dados[0].maiorNota;
+                    var notas = [];
+                    var nomes = [];
 
-                    criarGrafico(maiorNota);
+                    for (var i = 0; i < dados.length; i++) {
+
+                        nomes.push(dados[i].nome_quiz);
+                        notas.push(dados[i].maiorNota);
+
+                    }
+
+                    criarGrafico(nomes, notas);
 
                 })
 
@@ -61,7 +69,7 @@
 
         }
 
-        function criarGrafico(maiorNota) {
+        function criarGrafico(nomes, notas) {
 
             new Chart(ctx, {
 
@@ -69,11 +77,11 @@
 
                 data: {
 
-                    labels: ['Ben 10'],
+                    labels: nomes,
 
                     datasets: [{
-                        label: 'Maior Nota do Quiz',
-                        data: [maiorNota],
+                        label: 'Maior Nota dos Quizzes',
+                        data: notas,
                         borderWidth: 2
                     }]
                 },
@@ -82,12 +90,6 @@
 
                     responsive: true,
                     maintainAspectRatio: false,
-
-                    plugins: {
-                        legend: {
-                            display: true
-                        }
-                    },
 
                     scales: {
                         y: {
@@ -99,7 +101,6 @@
             });
 
         }
-
     </script>
 
 </body>
