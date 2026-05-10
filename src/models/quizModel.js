@@ -7,7 +7,7 @@ function pegarMaiorNota() {
             nome_quiz,
             MAX(nota) AS maiorNota
         FROM resultado_quiz
-        WHERE nome_quiz IN ('Ben10', 'Dragonballbudokai','Godofwar','Residentevil')
+        WHERE nome_quiz IN ('Ben10', 'Dragonballbudokai','Godofwar','Residentevil','Mortal Kombat','Naruto')
         GROUP BY nome_quiz;
     `;
 
