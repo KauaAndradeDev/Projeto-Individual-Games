@@ -2,46 +2,97 @@
 <html lang="pt-br">
 
 <head>
-<meta charset="UTF-8">
-<title>KL Games | Quiz Ben 10</title>
-<link rel="stylesheet" href="stylequiz.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ben 10 Quiz</title>
+
+    <link rel="stylesheet" href="stylequiz.css">
+
 </head>
 
 <body>
 
-<div id="container">
+    <div id="container">
 
-    <div id="jogo" class="card">
+        <div id="jogo" class="card">
 
-        <p>
-            Questão
-            <span id="num"></span> /
-            <span id="total"></span>
-        </p>
+            <p>
 
-        <h3 id="pergunta"></h3>
+                Questão
+                <span id="num"></span>
+                /
+                <span id="total"></span>
 
-        <div id="opcoes"></div>
+            </p>
 
-        <button onclick="responder()">
-            Responder
-        </button>
+            <h2 id="pergunta"></h2>
+
+            <div id="opcoes">
+
+                <label>
+
+                    <input type="radio" name="opcao" value="0">
+
+                    <span id="op1"></span>
+
+                </label>
+
+                <label>
+
+                    <input type="radio" name="opcao" value="1">
+
+                    <span id="op2"></span>
+
+                </label>
+
+                <label>
+
+                    <input type="radio" name="opcao" value="2">
+
+                    <span id="op3"></span>
+
+                </label>
+
+                <label>
+
+                    <input type="radio" name="opcao" value="3">
+
+                    <span id="op4"></span>
+
+                </label>
+
+            </div>
+
+            <button onclick="responder()">
+
+                Responder
+
+            </button>
+
+        </div>
+
+        <div id="final" class="card" style="display: none;">
+
+            <h2>Resultado</h2>
+
+            <p id="resultado"></p>
+
+            <button onclick="location.reload()">
+
+                Refazer Quiz
+
+            </button>
+
+        </div>
 
     </div>
 
-    <div id="final" class="card" style="display:none">
+</body>
 
-        <h2>Resultado</h2>
-
-        <p id="resultado"></p>
-
-        <button onclick="location.reload()">
-            Tentar novamente
-        </button>
-
-    </div>
-
-</div>
+</html>
 
 <script>
 
@@ -56,31 +107,38 @@ const perguntas = [
 
     {
         pergunta: "Qual é o dispositivo do Ben?",
-        opcoes: ["Omnitrix","Relógio","Portador","Transforma"],
+        opcoes: ["Omnitrix", "Relógio", "Portador", "Transforma"],
         correta: 0
     },
 
     {
         pergunta: "Quem é a prima do Ben?",
-        opcoes: ["Gwen","Kevin","Max","Julie"],
+        opcoes: ["Gwen", "Kevin", "Max", "Julie"],
         correta: 0
     },
 
     {
         pergunta: "Primeiro alien?",
-        opcoes: ["4 braços","Lança Chamas","XLR8","Diamante"],
+        opcoes: ["4 braços", "Lança Chamas", "XLR8", "Diamante"],
         correta: 1
     },
 
     {
         pergunta: "Vilão principal?",
-        opcoes: ["Vilgax","Animo","Hex","Ghost"],
+        opcoes: ["Vilgax", "Animo", "Hex", "Ghost"],
+        correta: 0
+    },
+
+    {
+        pergunta: "Quem é o alien mais forte?",
+        opcoes: ["Alien X", "Lança Chamas", "XLR8", "Não existe"],
         correta: 0
     }
 
 ]
 
 let atual = 0
+
 let acertos = 0
 
 total.innerHTML = perguntas.length
@@ -89,34 +147,42 @@ carregarPergunta()
 
 function carregarPergunta() {
 
-    pergunta.innerHTML = perguntas[atual].pergunta
+    pergunta.innerHTML =
+    perguntas[atual].pergunta
 
-    num.innerHTML = atual + 1
+    num.innerHTML =
+    atual + 1
 
-    opcoes.innerHTML = ""
+    op1.innerHTML =
+    perguntas[atual].opcoes[0]
 
-    for (let i = 0; i < perguntas[atual].opcoes.length; i++) {
+    op2.innerHTML =
+    perguntas[atual].opcoes[1]
 
-        opcoes.innerHTML += `
-        
-        <label class="option">
+    op3.innerHTML =
+    perguntas[atual].opcoes[2]
 
-            <input type="radio" name="opcao" value="${i}">
-
-            ${perguntas[atual].opcoes[i]}
-
-        </label>
-        
-        `
-    }
+    op4.innerHTML =
+    perguntas[atual].opcoes[3]
 }
 
 function responder() {
 
-    let escolha =
-    document.querySelector('input[name="opcao"]:checked')
+    let opcoes =
+    document.getElementsByName("opcao")
 
-    if (!escolha) {
+    let respostaEscolhida = -1
+
+    for (let i = 0; i < opcoes.length; i++) {
+
+        if (opcoes[i].checked) {
+
+            respostaEscolhida =
+            opcoes[i].value
+        }
+    }
+
+    if (respostaEscolhida == -1) {
 
         alert("Escolha uma opção!")
 
@@ -124,7 +190,7 @@ function responder() {
     }
 
     if (
-        parseInt(escolha.value) ==
+        respostaEscolhida ==
         perguntas[atual].correta
     ) {
 
@@ -132,6 +198,11 @@ function responder() {
     }
 
     atual++
+
+    for (let i = 0; i < opcoes.length; i++) {
+
+        opcoes[i].checked = false
+    }
 
     if (atual < perguntas.length) {
 
@@ -141,25 +212,28 @@ function responder() {
 
         finalizarJogo()
     }
+
 }
 
 function finalizarJogo() {
 
-    let nota = (acertos / perguntas.length) * 10
+    let nota =
+    (acertos / perguntas.length) * 10
 
     jogo.style.display = "none"
 
     final.style.display = "block"
 
     resultado.innerHTML = `
-    
+
     Você acertou ${acertos}
     de ${perguntas.length}
 
     <br><br>
 
-    Nota: ${nota.toFixed(1)}
-    
+    Sua nota foi:
+    ${nota.toFixed(1)}
+
     `
 
     fetch("/quiz/salvarResultado", {
@@ -167,13 +241,17 @@ function finalizarJogo() {
         method: "POST",
 
         headers: {
+
             "Content-Type": "application/json"
         },
 
         body: JSON.stringify({
 
-            idUsuario: sessionStorage.ID_USUARIO,
+            idUsuario:
+            sessionStorage.ID_USUARIO,
+
             quiz: "Ben10",
+
             nota: nota
 
         })
@@ -183,6 +261,3 @@ function finalizarJogo() {
 }
 
 </script>
-
-</body>
-</html>

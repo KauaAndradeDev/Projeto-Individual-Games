@@ -2,141 +2,89 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Ben 10</title>
+
+    <title>Dragon Ball Budokai</title>
+
     <link rel="stylesheet" href="stylequiz.css">
+
 </head>
 
 <body>
 
-    <div id="pontuacaoEJogo">
+    <div id="container">
 
-        <div id="pontuacao" class="flex-colunar width-fit-content border-primary">
+        <div id="jogo" class="card">
 
-            <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
+            <p>
 
-                <span>
-                    Quantidade de acertos:
-                    <span id="spanCertas">0</span>
-                </span>
+                Questão
+                <span id="num"></span>
+                /
+                <span id="total"></span>
 
-                <br>
+            </p>
 
-                <span>
-                    Quantidade de erros:
-                    <span id="spanErradas">0</span>
-                </span>
+            <h2 id="pergunta"></h2>
+
+            <div id="opcoes">
+
+                <label>
+
+                    <input type="radio" name="opcao" value="0">
+
+                    <span id="op1"></span>
+
+                </label>
+
+                <label>
+
+                    <input type="radio" name="opcao" value="1">
+
+                    <span id="op2"></span>
+
+                </label>
+
+                <label>
+
+                    <input type="radio" name="opcao" value="2">
+
+                    <span id="op3"></span>
+
+                </label>
+
+                <label>
+
+                    <input type="radio" name="opcao" value="3">
+
+                    <span id="op4"></span>
+
+                </label>
 
             </div>
 
-            <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
+            <button onclick="responder()">
 
-                <span id="pontuacaoFinal">
+                Responder
 
-                    Pontuação Final:
-                    <span id="spanPontuacaoFinal"></span>
-
-                </span>
-
-                <br>
-
-                <span id="msgFinal"></span>
-
-            </div>
+            </button>
 
         </div>
 
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+        <div id="final" class="card" style="display: none;">
 
-            <div id="infoQuestao" class="padding-8">
+            <h2>Resultado</h2>
 
-                <span>
+            <p id="resultado"></p>
 
-                    Questão atual:
-                    <span id="spanNumeroDaQuestaoAtual"></span>
+            <button onclick="location.reload()">
 
-                    de
+                Refazer Quiz
 
-                    <span id="qtdQuestoes"></span>
-
-                    questões
-
-                </span>
-
-            </div>
-
-            <br>
-
-            <div id="perguntaDaQuestaoAtual" class="padding-8">
-
-                <span id="spanQuestaoExibida"></span>
-
-            </div>
-
-            <br>
-
-            <div id="infoAlternativas" class="padding-8">
-
-                <span>
-                    Escolha uma opção:
-                </span>
-
-            </div>
-
-            <br>
-
-            <div id="opcoes" class="flex-colunar padding-8">
-
-                <span>
-
-                    <input type="radio" id="primeiraOpcao" name="option" value="alternativaA">
-
-                    <label for="primeiraOpcao" id="labelOpcaoUm"></label>
-
-                </span>
-
-                <br>
-
-                <span>
-
-                    <input type="radio" id="segundaOpcao" name="option" value="alternativaB">
-
-                    <label for="segundaOpcao" id="labelOpcaoDois"></label>
-
-                </span>
-
-                <br>
-
-                <span>
-
-                    <input type="radio" id="terceiraOpcao" name="option" value="alternativaC">
-
-                    <label for="terceiraOpcao" id="labelOpcaoTres"></label>
-
-                </span>
-
-                <br>
-
-                <span>
-
-                    <input type="radio" id="quartaOpcao" name="option" value="alternativaD">
-
-                    <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
-
-                </span>
-
-            </div>
-
-            <br>
-
-            <div id="botoes" class="padding-8">
-
-                <button onclick="submeter()">
-                    Responder
-                </button>
-
-            </div>
+            </button>
 
         </div>
 
@@ -155,127 +103,110 @@ if (!sessionStorage.ID_USUARIO) {
     window.location = "login.html"
 }
 
-pontuacao.style.display = "flex"
-jogo.style.display = "flex"
-pontuacaoFinalJogo.style.display = "none"
-
-const listaDeQuestoes = [
+const perguntas = [
 
     {
-        pergunta: "O que é o Omnitrix?",
-        alternativaA: "Relógio",
-        alternativaB: "Carro",
-        alternativaC: "Espada",
-        alternativaD: "Alien",
-        alternativaCorreta: "alternativaA"
+        pergunta: "Quem é o protagonista de Dragon Ball?",
+        opcoes: ["Vegeta", "Goku", "Gohan", "Piccolo"],
+        correta: 1
     },
 
     {
-        pergunta: "Quem é a prima do Ben?",
-        alternativaA: "Julie",
-        alternativaB: "Gwen",
-        alternativaC: "Kai",
-        alternativaD: "Charmcaster",
-        alternativaCorreta: "alternativaB"
+        pergunta: "Qual é o rival do Goku?",
+        opcoes: ["Kuririn", "Freeza", "Vegeta", "Bills"],
+        correta: 2
     },
 
     {
-        pergunta: "Qual alien é mais rápido?",
-        alternativaA: "4 braços",
-        alternativaB: "XLR8",
-        alternativaC: "Diamante",
-        alternativaD: "Ultra T",
-        alternativaCorreta: "alternativaB"
+        pergunta: "Qual transformação deixa o cabelo dourado?",
+        opcoes: ["Kaioken", "Instinto Superior", "Ozaru", "Super Sayajin"],
+        correta: 3
+    },
+
+    {
+        pergunta: "Quem derrotou Majin Boo?",
+        opcoes: ["Vegeta", "Gohan", "Goku", "Trunks"],
+        correta: 2
+    },
+
+    {
+        pergunta: "Qual personagem usa espada?",
+        opcoes: ["Piccolo", "Kuririn", "Trunks", "Yamcha"],
+        correta: 2
     }
 
 ]
 
-let numeroDaQuestaoAtual = 0
-let certas = 0
-let erradas = 0
+let atual = 0
 
-qtdQuestoes.innerHTML = listaDeQuestoes.length
+let acertos = 0
 
-spanNumeroDaQuestaoAtual.innerHTML = 1
+total.innerHTML = perguntas.length
 
-spanQuestaoExibida.innerHTML =
-listaDeQuestoes[0].pergunta
+carregarPergunta()
 
-labelOpcaoUm.innerHTML =
-listaDeQuestoes[0].alternativaA
+function carregarPergunta() {
 
-labelOpcaoDois.innerHTML =
-listaDeQuestoes[0].alternativaB
+    pergunta.innerHTML =
+    perguntas[atual].pergunta
 
-labelOpcaoTres.innerHTML =
-listaDeQuestoes[0].alternativaC
+    num.innerHTML =
+    atual + 1
 
-labelOpcaoQuatro.innerHTML =
-listaDeQuestoes[0].alternativaD
+    op1.innerHTML =
+    perguntas[atual].opcoes[0]
 
-function submeter() {
+    op2.innerHTML =
+    perguntas[atual].opcoes[1]
 
-    let opcoes = document.getElementsByName("option")
+    op3.innerHTML =
+    perguntas[atual].opcoes[2]
 
-    let respostaEscolhida = ""
+    op4.innerHTML =
+    perguntas[atual].opcoes[3]
+}
+
+function responder() {
+
+    let opcoes =
+    document.getElementsByName("opcao")
+
+    let respostaEscolhida = -1
 
     for (let i = 0; i < opcoes.length; i++) {
 
         if (opcoes[i].checked) {
 
-            respostaEscolhida = opcoes[i].value
+            respostaEscolhida =
+            opcoes[i].value
         }
     }
 
-    if (respostaEscolhida == "") {
+    if (respostaEscolhida == -1) {
 
-        alert("Escolha uma alternativa")
+        alert("Escolha uma opção!")
 
         return
     }
 
     if (
         respostaEscolhida ==
-        listaDeQuestoes[numeroDaQuestaoAtual].alternativaCorreta
+        perguntas[atual].correta
     ) {
 
-        certas++
-
-        spanCertas.innerHTML = certas
-
-    } else {
-
-        erradas++
-
-        spanErradas.innerHTML = erradas
+        acertos++
     }
 
-    numeroDaQuestaoAtual++
+    atual++
 
-    if (numeroDaQuestaoAtual < listaDeQuestoes.length) {
+    for (let i = 0; i < opcoes.length; i++) {
 
-        spanNumeroDaQuestaoAtual.innerHTML =
-        numeroDaQuestaoAtual + 1
+        opcoes[i].checked = false
+    }
 
-        spanQuestaoExibida.innerHTML =
-        listaDeQuestoes[numeroDaQuestaoAtual].pergunta
+    if (atual < perguntas.length) {
 
-        labelOpcaoUm.innerHTML =
-        listaDeQuestoes[numeroDaQuestaoAtual].alternativaA
-
-        labelOpcaoDois.innerHTML =
-        listaDeQuestoes[numeroDaQuestaoAtual].alternativaB
-
-        labelOpcaoTres.innerHTML =
-        listaDeQuestoes[numeroDaQuestaoAtual].alternativaC
-
-        labelOpcaoQuatro.innerHTML =
-        listaDeQuestoes[numeroDaQuestaoAtual].alternativaD
-
-        for (let i = 0; i < opcoes.length; i++) {
-
-            opcoes[i].checked = false
-        }
+        carregarPergunta()
 
     } else {
 
@@ -286,22 +217,23 @@ function submeter() {
 
 function finalizarJogo() {
 
+    let nota =
+    (acertos / perguntas.length) * 10
+
     jogo.style.display = "none"
 
-    pontuacaoFinalJogo.style.display = "flex"
+    final.style.display = "block"
 
-    let nota = (certas / listaDeQuestoes.length) * 10
+    resultado.innerHTML = `
 
-    spanPontuacaoFinal.innerHTML = nota.toFixed(1)
+    Você acertou ${acertos}
+    de ${perguntas.length}
 
-    msgFinal.innerHTML = `
-    
-    Você acertou ${certas} de ${listaDeQuestoes.length}
-    
     <br><br>
 
-    Nota: ${nota.toFixed(1)}
-    
+    Sua nota foi:
+    ${nota.toFixed(1)}
+
     `
 
     fetch("/quiz/salvarResultado", {
@@ -309,13 +241,17 @@ function finalizarJogo() {
         method: "POST",
 
         headers: {
+
             "Content-Type": "application/json"
         },
 
         body: JSON.stringify({
 
-            idUsuario: sessionStorage.ID_USUARIO,
-            quiz: "Ben10",
+            idUsuario:
+            sessionStorage.ID_USUARIO,
+
+            quiz: "Dragonballbudokai",
+
             nota: nota
 
         })
