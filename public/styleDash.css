@@ -60,14 +60,11 @@ header {
   justify-content: space-between;
   align-items: center;
   width: 80%;
-  margin: 15px auto;
   padding: 12px 25px;
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
+  background: black;
   border-radius: 40px;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 15px auto;
+  margin-left: 160px;
 }
 
 .header img {
