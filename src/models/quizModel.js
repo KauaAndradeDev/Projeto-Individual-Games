@@ -1,15 +1,17 @@
 var database = require("../database/config");
 
-function pegarMaiorNota() {
+function pegarMaiorNota(idUsuario) {
 
     var instrucaoSql = `
         SELECT 
             nome_quiz,
             MAX(nota) AS maiorNota
         FROM resultado_quiz
-        WHERE nome_quiz IN ('Ben10', 'Dragonballbudokai','Godofwar','Residentevil','Mortal Kombat','Naruto')
+        WHERE fk_usuario = ${idUsuario}
         GROUP BY nome_quiz;
     `;
+
+    console.log(instrucaoSql);
 
     return database.executar(instrucaoSql);
 }
