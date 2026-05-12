@@ -1,155 +1,118 @@
-body {
-
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
 
-    font-family: Arial, sans-serif;
-
+body {
     background-color: #081520;
-
     color: white;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    min-height: 100vh;
+    padding-top: 100px;
 }
 
-#container,
-#pontuacaoEJogo {
-
-    width: 90%;
-
-    max-width: 500px;
-}
-
-.card,
-#pontuacao,
-#jogo {
-
-    background-color: #10273b;
-
-    padding: 20px;
-
-    border-radius: 10px;
-
-    margin-top: 15px;
-}
-
-.flex-colunar {
-
-    display: flex;
-
-    flex-direction: column;
-}
-
-.padding-8 {
-
-    padding: 8px;
-}
-
-.width-fit-content {
-
+header{
     width: 100%;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 10px;
 }
 
-.border-primary,
-.border-secondary {
+.header{
+    width: 1000px;
+    height: 55px;
+    background-color: black;
+    border-radius: 40px;
+    padding: 0 20px;
 
-    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#infoQuestao,
-#perguntaDaQuestaoAtual,
-#infoAlternativas {
-
-    text-align: center;
+.logo img{
+    width: 35px;
 }
 
-#perguntaDaQuestaoAtual,
-#pergunta {
+nav{
+    display: flex;
+    gap: 8px;
+}
 
-    font-size: 24px;
+nav a{
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
 
-    font-weight: bold;
+nav a:hover{
+    background-color: #1e293b;
+}
 
-    margin-bottom: 20px;
+#container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    width: 700px;
+    background-color: #111827;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.card p {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.card h2 {
+    margin-bottom: 25px;
+    font-size: 28px;
 }
 
 #opcoes {
-
     display: flex;
-
     flex-direction: column;
-
-    gap: 12px;
-
-    margin-top: 15px;
+    gap: 15px;
 }
 
-#opcoes label,
-.option,
-#opcoes span {
-
-    display: flex;
-
-    align-items: center;
-
-    background-color: #16344d;
-
-    padding: 12px;
-
-    border-radius: 6px;
-
+#opcoes label {
+    background-color: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
-input[type="radio"] {
-
-    margin-right: 12px;
+#opcoes label:hover {
+    background-color: #2563eb;
 }
 
 button {
-
     width: 100%;
-
-    padding: 12px;
-
+    margin-top: 25px;
+    padding: 15px;
     border: none;
-
-    border-radius: 6px;
-
-    background-color: #00bcd4;
-
+    border-radius: 10px;
+    background-color: #2563eb;
     color: white;
-
     font-size: 16px;
-
-    font-weight: bold;
-
     cursor: pointer;
-
-    margin-top: 15px;
 }
 
 button:hover {
-
-    background-color: #0097a7;
+    background-color: #1d4ed8;
 }
 
-#pontuacaoFinalJogo {
-
-    display: none;
-
-    margin-top: 15px;
-}
-
-#resultado,
-#msgFinal {
-
+#final {
     text-align: center;
+}
 
-    font-size: 18px;
+#resultado {
+    margin-top: 20px;
+    font-size: 22px;
 }
