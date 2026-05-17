@@ -2,162 +2,68 @@
 <html lang="pt-br">
 
 <head>
-<meta charset="UTF-8">
-<title>KL Games | Top 5</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K Games</title>
 
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="stylepaginaentrada.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<header class="header">
-    <a href="index.html" class="logo">
-        <img src="./imagem/GamesLogan.png">
-    </a>
-    
-    <nav>
-        <a href="./dashboard.html">dashboard</a>
-        <a href="#top5">Top 5</a>
-        <a href="#" onclick="limparSessao()">Sair</a>
-         
-    </nav>
-    
+<header>
+
+    <div class="header">
+
+        <a href="index.html">
+            <img src="./imagem/GamesLogan.png">
+        </a>
+
+        <nav>
+            <a href="./dashboard.html">Dashboard</a>
+            <a href="./geralquiz.html">Quiz</a>
+            <a href="./top5.html">Top 5</a>
+            <a href="#" onclick="limparSessao()">Sair</a>
+        </nav>
+
+    </div>
+
 </header>
-<br><br><br><b><br><br><br><br><br><br><br>
 
 
+<div class="area_cards_inicio">
 
-<div class="login" id="top5">
+    <div class="card_menu">
 
-    <div class="container">
+        <img src="./imagem/quiz.webp">
 
-        <div class="card">
+        <h2>QUIZZES</h2>
 
-            <h2>Top 5 Jogos </h2>
+        <p>Teste seus conhecimentos nos melhores jogos de PS2</p>
 
-            <div class="formulario">
+        <a href="./geralquiz.html">
+            <button>INICIAR QUIZ</button>
+        </a>
 
-                <div class="campo">
-                    <span>Nome do jogo</span>
-                    <input id="input_jogo" type="text" placeholder="Digite um jogo">
-                </div>
+    </div>
 
-                <button class="botao" onclick="adicionar()">Adicionar</button>
+    <div class="card_menu">
 
-            </div>
+        <img src="./imagem/top5img.jpg">
 
-            <div id="lista"></div>
+        <h2>TOP 5</h2>
 
-        </div>
+        <p>Monte sua lista dos jogos de PS2 que você mais gostou</p>
+
+        <a href="./top5.html">
+            <button>VER TOP 5</button>
+        </a>
 
     </div>
 
 </div>
-<section class="carousel">
-    
-    <h2>Quizzes De Cada jogos - Vamos testar o quanto você sabe desses jogos de PS2</h2>
-    <div class="carousel-container">
-        <div class="carousel-wrapper" id="carouselWrapper">
-            <div class="carousel-slide">
-                <div class="game-card">
-                    <a href="./quizBen10.html">
-                    <img src="./imagem/Ben10.jpg" alt="Ben10">
-                    </a>
-                    <h3>Quiz Ben10</h3>
-                    
-                </div>
-                <div class="game-card">
-                    
-                    <a href="./quizDragonballbudokai.html">
-                    <img src="./imagem/dragonballbudokai.jpg" alt="Dragon Ball Budokai">
-                    </a>
-                    <h3>Quiz Dragon Ball Budokai</h3>
-                    
-                </div>
-                <div class="game-card">
-                    <a href="./quizGodofwar.html">
-                    <img src="./imagem/godofwar.jpg" alt="God of War">
-                      </a>
-                    <h3>Quiz God of War</h3>
-                  
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <div class="game-card">
-                    <a href="./quizResidentevil.html">
-                    <img src="./imagem/residentevil.jpg" alt="ResidentEvil 4">
-                    </a>
-                    <h3> Quiz ResidentEvil 4</h3>
-                    
-                </div>
-                <div class="game-card">
-                    <a href="./quizMortalKombat.html">
-                    <img src="./imagem/mortalKombar.jpg" alt="Mortal Kombat">
-                    </a>
-                    <h3> Quiz Mortal Kombat</h3>
-                    
-                </div>
-                <div class="game-card">
-                      <a href="./quizNaruto.html">
-                    <img src="./imagem/naruto.jpg" alt="Naruto">
-                    </a>
-                    <h3> Quiz Naruto</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
-</section>
+
 </body>
 </html>
-
-<script>
-
-let jogos = []
-
-function adicionar() {
-    let nome = input_jogo.value
-    lista.innerHTML = ""
-
-    if (nome == "") {
-        alert("Digite um jogo")
-    } else if (jogos.length >= 5) {
-        alert("Só pode até 5 jogos")
-    } else {
-        jogos.push(nome)
-        input_jogo.value = ""
-        atualizar()
-    }
-}
-
-function atualizar() {
-    lista.innerHTML = ""
-
-    for (let i = 0; i < jogos.length; i++) {
-        lista.innerHTML += `<p>${i + 1}º - ${jogos[i]}</p>`
-    }
-}
-
-
-let currentSlide = 0;
-const totalSlides = 2; 
-const wrapper = document.getElementById('carouselWrapper');
-
-function showSlide(index) {
-    wrapper.style.transform = `translateX(-${index * 100}%)`;
-    currentSlide = index;
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-}
-
-
-
-
-
-
-</script>

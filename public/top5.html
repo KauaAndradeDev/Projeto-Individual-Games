@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>KL Games | Top 5</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="./js/sessao.js"></script>
+</head>
+
+<body style="background:
+linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+url('./imagem/fundoquiz.png');
+background-position: center center;
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+min-height: 100vh;
+width: 100%;
+margin: 0;
+padding: 0;">
+
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="./imagem/GamesLogan.png">
+        </a>
+
+        <nav>
+            <a href="./dashboard.html">dashboard</a>
+
+            <a href="./geralquiz.html">QUIZ</a>
+            <a href="./paginadeEntrada.html">Pagina Principal</a>
+            <a href="#" onclick="limparSessao()">Sair</a>
+
+        </nav>
+
+    </header>
+    <br><br><br><br><br>
+
+    <div style="display: flex; justify-content: center; margin-top: 40px; margin-top: 0px; margin-bottom: -300px">
+        <img src="./imagem/LetreiroTop5Editado.png" alt="" style="width: 500px;">
+    </div>
+
+    <div class="top5" id="top5">
+
+        <div class="container">
+
+            <div class="card">
+
+                <h2>Top 5 Jogos </h2>
+
+                <div class="formulario">
+
+                    <div class="campo">
+                        <span>Nome do jogo</span>
+                        <input id="input_jogo" type="text" placeholder="Digite um jogo">
+                    </div>
+
+                    <button class="botao" onclick="adicionar()">Adicionar</button>
+
+                </div>
+
+                <div id="lista"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    let jogos = []
+
+    function adicionar() {
+        let nome = input_jogo.value
+        lista.innerHTML = ""
+
+        if (nome == "") {
+            alert("Digite um jogo")
+        } else if (jogos.length >= 5) {
+            alert("Só pode até 5 jogos")
+        } else {
+            jogos.push(nome)
+            input_jogo.value = ""
+            atualizar()
+        }
+    }
+
+    function atualizar() {
+        lista.innerHTML = ""
+
+        for (let i = 0; i < jogos.length; i++) {
+            lista.innerHTML += `<p>${i + 1}º - ${jogos[i]}</p>`
+        }
+    }
+
+
+
+
+
+
+
+
+</script>

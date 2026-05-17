@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styleDash.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+
+<header>
     <div class="header">
 
         <a href="index.html" class="logo">
@@ -16,22 +18,21 @@
         </a>
 
         <nav>
-            <a href="./index.html">Início</a>
-            <a href="./dashboard.html">Dashboard</a>
-            <a href="#" onclick="history.back()">Voltar</a>
+            <a href="./paginadeEntrada.html">Pagina Entrada</a>
+            <a href="./geralquiz.html">Quiz</a>
+            <a href="./top5.html">Top 5</a>
+            
+            <a href="#" onclick="history.back()">Sair</a>
         </nav>
 
     </div>
 </header>
-</body>
-</html>
-<br><br><br><br>
 
-
-<div style="width: 700px; height: 400px; margin: auto;">
+<div class="grafico">
     <canvas id="myChart"></canvas>
 </div>
 
+</body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>

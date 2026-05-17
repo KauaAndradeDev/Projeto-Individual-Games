@@ -230,7 +230,7 @@ padding: 35px;
 }
 
 .secao:nth-child(even) {
-  background: #081520;
+  background: #a7bfd4;
 }
 
 .secao h2 {
@@ -241,14 +241,13 @@ padding: 35px;
 
 
 
-
-
 .carousel {
   padding: 50px 20px;
-  background: linear-gradient(135deg, #081520, #0b1a25);
+  
   text-align: center;
   color: white;
   position: relative;
+
 }
 
 .carousel-nav {
@@ -366,3 +365,13 @@ img {
   border-radius: 20px;
   margin-top: 20px;
 }
+
+.top5 {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+
