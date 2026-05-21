@@ -32,6 +32,21 @@
 <img src="./imagem/maioresnotasletreiroo.png" alt="" width="700px">
 </div>
 
+<div></div>
+
+<div class="alinhar">
+<div class="card">KPI DE MAIOR NOTA:
+<div id="kpiMaiornota">
+</div>
+
+</div>
+<BR><BR></BR></BR>
+<div class="card">KPI DE MENOR NOTA:
+<div id="kpiMenornota">
+  
+</div>
+</div>
+</div>
 <div class="grafico">
     <canvas id="myChart"></canvas>
 </div>
@@ -56,33 +71,50 @@ fetch(`/quiz/maiorNota?idUsuario=${idUsuario}`)
 .then(function(dados){
 
     for(var i = 0; i < dados.length; i++){
-
+        
         if(dados[i].nome_quiz == "Ben10"){
-            notas[0] = dados[i].maiorNota;
+            notas[0] = Number(dados[i].maiorNota);
         }
 
         if(dados[i].nome_quiz == "Dragonballbudokai"){
-            notas[1] = dados[i].maiorNota;
+            notas[1] = Number(dados[i].maiorNota);
         }
 
         if(dados[i].nome_quiz == "Godofwar"){
-            notas[2] = dados[i].maiorNota;
+            notas[2] = Number(dados[i].maiorNota);
         }
 
         if(dados[i].nome_quiz == "Residentevil"){
-            notas[3] = dados[i].maiorNota;
+            notas[3] = Number(dados[i].maiorNota);
         }
 
         if(dados[i].nome_quiz == "Mortal Kombat"){
-            notas[4] = dados[i].maiorNota;
+            notas[4] = Number(dados[i].maiorNota);
         }
 
         if(dados[i].nome_quiz == "Naruto"){
-            notas[5] = dados[i].maiorNota;
+            notas[5] = Number(dados[i].maiorNota);
         }
 
-    }
 
+    }
+let MaiorNota =  notas[0]
+let MenorNota = notas[0]
+   for (let i = 0; i < dados.length; i++) {
+    
+    if (MaiorNota < notas[i]) {
+        MaiorNota = notas[i]
+    }
+    kpiMaiornota.innerHTML =  MaiorNota
+   }
+    for (let i = 0; i < dados.length; i++) {
+    
+    if (MenorNota > notas[i]) {
+        MenorNota = notas[i]
+    }
+    kpiMenornota.innerHTML =  MenorNota
+   }
+   
     new Chart(ctx, {
 
         type: 'bar',
@@ -121,5 +153,8 @@ fetch(`/quiz/maiorNota?idUsuario=${idUsuario}`)
 .catch(function(erro){
     console.log("Erro:", erro);
 });
+
+
+
 
 </script>
