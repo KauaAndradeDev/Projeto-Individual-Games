@@ -3,11 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K Games | Top 5</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="stylequiz.css">
 </head>
 
 <body style="background:
@@ -22,139 +21,134 @@ background-attachment: fixed;
 min-height: 100vh;
 width: 100%;
 margin: 0;
-padding: 0; ">
+padding: 0;">
 
-    <header class="header">
-        <a href="index.html" class="logo">
-            <img src="./imagem/GamesLogan.png">
-        </a>
+    <header>
 
-        <nav>
-            <a href="./dashboard.html">dashboard</a>
-            <a href="./top5.html">Top 5</a>
-            <a href="./paginadeEntrada.html">Pagina Principal</a>
-            <a href="./index.html" onclick="limparSessao()">Sair</a>
+        <div class="header">
 
-        </nav>
+            <a href="index.html" class="logo">
+                <img src="./imagem/GamesLogan.png">
+            </a>
+
+            <nav>
+                <a href="./dashboard.html">Dashboard</a>
+                <a href="./top5.html">Top 5</a>
+                <a href="./paginadeEntrada.html">Página Principal</a>
+                <a href="./index.html">Sair</a>
+            </nav>
+
+        </div>
 
     </header>
 
+    <br><br><br>
 
+    <div  style="display: flex; justify-content: center; margin-top: 40px; margin-top: 0px; margin-bottom: -200px"">
 
-    <br><br><br><br><br><br>
-    <div style="display: flex; justify-content: center; margin-top: 40px; margin-top: 0px; margin-bottom: -120px">
-        <img src="./imagem/imagemLETREIRO.png" alt="" style="width: 800px;">
+        <img src="./imagem/imagemLETREIRO.png"
+        style="width:800px;">
+
     </div>
 
     <section class="carousel">
-        <div class="carousel-container">
-            <div class="carousel-wrapper" id="carouselWrapper">
-                <div class="carousel-slide">
-                    <div class="game-card">
-                        <a href="./quizBen10.html">
-                            <img src="./imagem/Ben10.jpg" alt="Ben10">
-                        </a>
-                        <h3>Quiz Ben10</h3>
 
-                    </div>
+        <div class="slide" id="slide1">
 
-                    <div class="game-card">
+            <a href="./quizBen10.html" class="card-link">
 
-                        <a href="./quizDragonballbudokai.html">
-                            <img src="./imagem/dragonballbudokai.jpg" alt="Dragon Ball Budokai">
-                        </a>
-                        <h3>Quiz Dragon Ball Budokai</h3>
-
-                    </div>
-                    <div class="game-card">
-                        <a href="./quizGodofwar.html">
-                            <img src="./imagem/godofwar.jpg" alt="God of War">
-                        </a>
-                        <h3>Quiz God of War</h3>
-
-                    </div>
+                <div class="game-card">
+                    <img src="./imagem/Ben10.jpg">
+                    <h3>Ben 10</h3>
                 </div>
-                <div class="carousel-slide">
-                    <div class="game-card">
-                        <a href="./quizResidentevil.html">
-                            <img src="./imagem/residentevil.jpg" alt="ResidentEvil 4">
-                        </a>
-                        <h3> Quiz ResidentEvil 4</h3>
 
-                    </div>
-                    <div class="game-card">
-                        <a href="./quizMortalKombat.html">
-                            <img src="./imagem/mortalKombar.jpg" alt="Mortal Kombat">
-                        </a>
-                        <h3> Quiz Mortal Kombat</h3>
+            </a>
 
-                    </div>
-                    <div class="game-card">
-                        <a href="./quizNaruto.html">
-                            <img src="./imagem/naruto.jpg" alt="Naruto">
-                        </a>
-                        <h3> Quiz Naruto</h3>
-                    </div>
+            <a href="./quizGodofwar.html" class="card-link">
+
+                <div class="game-card">
+                    <img src="./imagem/godofwar.jpg">
+                    <h3>God of War</h3>
                 </div>
-            </div>
+
+            </a>
+
+            <a href="./quizNaruto.html" class="card-link">
+
+                <div class="game-card">
+                    <img src="./imagem/naruto.jpg">
+                    <h3>Naruto</h3>
+                </div>
+
+            </a>
+
         </div>
-        <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+
+        <div class="slide" id="slide2">
+
+            <a href="./quizResidentevil.html" class="card-link">
+
+                <div class="game-card">
+                    <img src="./imagem/residentevil.jpg">
+                    <h3>Resident Evil</h3>
+                </div>
+
+            </a>
+
+            <a href="./quizMortalKombat.html" class="card-link">
+
+                <div class="game-card">
+                    <img src="./imagem/mortalKombar.jpg">
+                    <h3>Mortal Kombat</h3>
+                </div>
+
+            </a>
+
+            <a href="./quizDragonballbudokai.html" class="card-link">
+
+                <div class="game-card">
+                    <img src="./imagem/dragonballbudokai.jpg">
+                    <h3>Dragon Ball</h3>
+                </div>
+
+            </a>
+
+        </div>
+
     </section>
+
+    <div class="botao">
+
+        <button class="carousel-btn" onclick="proximo()">
+            Próximo
+        </button>
+
+    </div>
+
+<script>
+
+    let atual = 1
+
+    function proximo(){
+
+        if(atual == 1){
+
+            slide1.style.display = "none"
+            slide2.style.display = "flex"
+
+            atual = 2
+
+        } else {
+
+            slide2.style.display = "none"
+            slide1.style.display = "flex"
+
+            atual = 1
+        }
+    }
+
+</script>
 
 </body>
 
 </html>
-
-<script>
-
-
-
-    let jogos = []
-
-    function adicionar() {
-        let nome = input_jogo.value
-        lista.innerHTML = ""
-
-        if (nome == "") {
-            alert("Digite um jogo")
-        } else if (jogos.length >= 5) {
-            alert("Só pode até 5 jogos")
-        } else {
-            jogos.push(nome)
-            input_jogo.value = ""
-            atualizar()
-        }
-    }
-
-    function atualizar() {
-        lista.innerHTML = ""
-
-        for (let i = 0; i < jogos.length; i++) {
-            lista.innerHTML += `<p>${i + 1}º - ${jogos[i]}</p>`
-        }
-    }
-
-
-    let currentSlide = 0;
-    const totalSlides = 2;
-    const wrapper = document.getElementById('carouselWrapper');
-
-    function showSlide(index) {
-        wrapper.style.transform = `translateX(-${index * 100}%)`;
-        currentSlide = index;
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        showSlide(currentSlide);
-    }
-
-
-
-
-
-
-
-
-
-</script>

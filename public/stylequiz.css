@@ -1,117 +1,144 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins;
 }
 
-body {
-    background-color: #081520;
-    color: white;
-    padding-top: 100px;
+body{
+    color:white;
+    padding-top:100px;
 }
 
 header{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    top: 10px;
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+
+    position:fixed;
+    top:0;
+
+    padding-top:15px;
+
+    z-index:1000;
 }
 
 .header{
-    width: 1000px;
-    height: 55px;
-    background-color: black;
-    border-radius: 40px;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width:80%;
+
+    background:black;
+
+    border-radius:40px;
+
+    padding:12px 25px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .logo img{
-    width: 35px;
+    width:45px;
 }
 
 nav{
-    display: flex;
-    gap: 8px;
+    display:flex;
+    align-items:center;
+
+    gap:20px;
 }
 
 nav a{
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 5px 10px;
-    border-radius: 20px;
+    color:white;
+
+    text-decoration:none;
+
+    font-size:16px;
+    font-weight:500;
+
+    padding:8px 16px;
+
+    border-radius:20px;
+
+    transition:0.3s;
 }
 
 nav a:hover{
-    background-color: #1e293b;
+    background-color:rgba(255,255,255,0.1);
 }
 
-#container {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+.carousel{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    margin-top:120px;
 }
 
-.card {
-    width: 700px;
-    background-color: #111827;
-    padding: 30px;
-    border-radius: 20px;
+.slide{
+    display:none;
+
+    justify-content:center;
+    align-items:flex-start;
+
+    gap:25px;
 }
 
-.card p {
-    margin-bottom: 15px;
-    font-size: 18px;
+#slide1{
+    display:flex;
 }
 
-.card h2 {
-    margin-bottom: 25px;
-    font-size: 28px;
+.game-card{
+    width:250px;
+    background-color:rgba(17,24,39,0.9);
+
+    padding:15px;
+
+    border-radius:20px;
+
+    text-align:center;
 }
 
-#opcoes {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.game-card img{
+    width:100%;
+    height:320px;
+
+    object-fit:cover;
+
+    border-radius:15px;
 }
 
-#opcoes label {
-    background-color: #1e293b;
-    padding: 15px;
-    border-radius: 10px;
-    cursor: pointer;
+.game-card h3{
+    margin-top:15px;
+    color:white;
+    font-size:18px;
 }
 
-#opcoes label:hover {
-    background-color: #2563eb;
+.botao{
+    display:flex;
+    justify-content:center;
+    margin-top:30px;
 }
 
-button {
-    width: 100%;
-    margin-top: 25px;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    background-color: #2563eb;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+.carousel-btn{
+    width:130px;
+    height:45px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background-color:#2563eb;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
 }
 
-button:hover {
-    background-color: #1d4ed8;
-}
-
-#final {
-    text-align: center;
-}
-
-#resultado {
-    margin-top: 20px;
-    font-size: 22px;
+.carousel-btn:hover{
+    background-color:#1d4ed8;
 }
