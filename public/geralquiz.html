@@ -4,24 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K Games | Top 5</title>
+    <title>K Games | Quiz</title>
 
     <link rel="stylesheet" href="stylequiz.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 </head>
 
-<body style="background:
-linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
-url('./imagem/fotofundogamesteste.jpg');
-
-background-position: center center;
-background-repeat: no-repeat;
-background-size: cover;
-background-attachment: fixed;
-
-min-height: 100vh;
-width: 100%;
-margin: 0;
-padding: 0;">
+<body>
 
     <header>
 
@@ -42,24 +33,28 @@ padding: 0;">
 
     </header>
 
-    <br><br><br>
+    <div class="titulo-quiz">
 
-    <div  style="display: flex; justify-content: center; margin-top: 40px; margin-top: 0px; margin-bottom: -200px"">
-
-        <img src="./imagem/imagemLETREIRO.png"
-        style="width:800px;">
+        <img src="./imagem/imagemLETREIRO.png">
 
     </div>
 
     <section class="carousel">
+
+        <button class="carousel-btn" onclick="anterior()">
+            ❮
+        </button>
 
         <div class="slide" id="slide1">
 
             <a href="./quizBen10.html" class="card-link">
 
                 <div class="game-card">
+
                     <img src="./imagem/Ben10.jpg">
+
                     <h3>Ben 10</h3>
+
                 </div>
 
             </a>
@@ -67,8 +62,11 @@ padding: 0;">
             <a href="./quizGodofwar.html" class="card-link">
 
                 <div class="game-card">
+
                     <img src="./imagem/godofwar.jpg">
+
                     <h3>God of War</h3>
+
                 </div>
 
             </a>
@@ -76,8 +74,11 @@ padding: 0;">
             <a href="./quizNaruto.html" class="card-link">
 
                 <div class="game-card">
+
                     <img src="./imagem/naruto.jpg">
+
                     <h3>Naruto</h3>
+
                 </div>
 
             </a>
@@ -89,8 +90,11 @@ padding: 0;">
             <a href="./quizResidentevil.html" class="card-link">
 
                 <div class="game-card">
+
                     <img src="./imagem/residentevil.jpg">
+
                     <h3>Resident Evil</h3>
+
                 </div>
 
             </a>
@@ -98,8 +102,11 @@ padding: 0;">
             <a href="./quizMortalKombat.html" class="card-link">
 
                 <div class="game-card">
+
                     <img src="./imagem/mortalKombar.jpg">
+
                     <h3>Mortal Kombat</h3>
+
                 </div>
 
             </a>
@@ -107,47 +114,64 @@ padding: 0;">
             <a href="./quizDragonballbudokai.html" class="card-link">
 
                 <div class="game-card">
+
                     <img src="./imagem/dragonballbudokai.jpg">
+
                     <h3>Dragon Ball</h3>
+
                 </div>
 
             </a>
 
         </div>
 
-    </section>
-
-    <div class="botao">
-
         <button class="carousel-btn" onclick="proximo()">
-            Próximo
+            ❯
         </button>
 
-    </div>
+    </section>
 
-<script>
+    <script>
 
-    let atual = 1
+        let atual = 1
 
-    function proximo(){
+        function proximo() {
 
-        if(atual == 1){
+            if (atual == 1) {
 
-            slide1.style.display = "none"
-            slide2.style.display = "flex"
+                slide1.style.display = "none"
+                slide2.style.display = "flex"
 
-            atual = 2
+                atual = 2
 
-        } else {
+            } else {
 
-            slide2.style.display = "none"
-            slide1.style.display = "flex"
+                slide2.style.display = "none"
+                slide1.style.display = "flex"
 
-            atual = 1
+                atual = 1
+            }
         }
-    }
 
-</script>
+        function anterior() {
+
+            if (atual == 2) {
+
+                slide2.style.display = "none"
+                slide1.style.display = "flex"
+
+                atual = 1
+
+            } else {
+
+                slide1.style.display = "none"
+                slide2.style.display = "flex"
+
+                atual = 2
+            }
+        }
+
+    </script>
 
 </body>
 
