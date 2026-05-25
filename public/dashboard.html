@@ -107,13 +107,19 @@ let MenorNota = notas[0]
     }
     kpiMaiornota.innerHTML =  MaiorNota
    }
+  
+    
+  
     for (let i = 0; i < dados.length; i++) {
     
-    if (MenorNota > notas[i]) {
+
+    if (MenorNota > notas[i] && notas[i] != 0) {
+
         MenorNota = notas[i]
     }
     kpiMenornota.innerHTML =  MenorNota
    }
+    
    
     new Chart(ctx, {
 
