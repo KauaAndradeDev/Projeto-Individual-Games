@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,157 +8,158 @@
     <link rel="stylesheet" href="styleDash.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<header>
-    <div class="header">
+    <header>
+        <div class="header">
 
-        <a href="index.html" class="logo">
-            <img src="./imagem/GamesLogan.png">
-        </a>
+            <a href="index.html" class="logo">
+                <img src="./imagem/GamesLogan.png">
+            </a>
 
-        <nav>
-            <a href="./paginadeEntrada.html">Pagina Entrada</a>
-            <a href="./geralquiz.html">Quiz</a>
-            <a href="./top5.html">Top 5</a>
-            
-            <a href="#" onclick="history.back()">Sair</a>
-        </nav>
+            <nav>
+                <a href="./paginadeEntrada.html">Pagina Entrada</a>
+                <a href="./geralquiz.html">Quiz</a>
+                <a href="./top5.html">Top 5</a>
 
+                <a href="#" onclick="history.back()">Sair</a>
+            </nav>
+
+        </div>
+    </header>
+    <br><br>
+    <div style="display: flex; justify-content: center; margin-top: 40px; margin-top: 0px; margin-bottom: -190px">
+        <img src="./imagem/letreiroCERTO.png" alt="" width="700px">
     </div>
-</header>
-<br><br>
-<div style="display: flex; justify-content: center; margin-top: 40px; margin-top: 0px; margin-bottom: -190px">
-<img src="./imagem/letreiroCERTO.png" alt="" width="700px">
-</div>
 
-<div></div>
+    <div></div>
 
-<div class="alinhar">
-<div class="card">KPI DE MAIOR NOTA:
-<div id="kpiMaiornota">
-</div>
+    <div class="alinhar">
+        <div class="card">KPI DE MAIOR NOTA:
+            <div id="kpiMaiornota">
+            </div>
 
-</div>
-<BR><BR></BR></BR>
-<div class="card">KPI DE MENOR NOTA:
-<div id="kpiMenornota">
-  
-</div>
-</div>
-</div>
-<div class="grafico">
-    <canvas id="myChart"></canvas>
-</div>
+        </div>
+        <BR><BR></BR></BR>
+        <div class="card">KPI DE MENOR NOTA:
+            <div id="kpiMenornota">
+
+            </div>
+        </div>
+    </div>
+    <div id="div_grafico" class="grafico">
+        <canvas id="myChart"></canvas>
+    </div>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
 
-const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById('myChart');
 
-var notas = [0,0,0,0,0,0];
+    var notas = [0, 0, 0, 0, 0, 0];
 
-var idUsuario = sessionStorage.ID_USUARIO;
+    var idUsuario = sessionStorage.ID_USUARIO;
 
-fetch(`/quiz/maiorNota?idUsuario=${idUsuario}`)
+    fetch(`/quiz/maiorNota?idUsuario=${idUsuario}`)
 
-.then(function(resposta){
-    return resposta.json();
-})
+        .then(function (resposta) {
+            return resposta.json();
+        })
 
-.then(function(dados){
+        .then(function (dados) {
 
-    for(var i = 0; i < dados.length; i++){
-        
-        if(dados[i].nome_quiz == "Ben10"){
-            notas[0] = Number(dados[i].maiorNota);
-        }
+            for (var i = 0; i < dados.length; i++) {
 
-        if(dados[i].nome_quiz == "Dragonballbudokai"){
-            notas[1] = Number(dados[i].maiorNota);
-        }
-
-        if(dados[i].nome_quiz == "Godofwar"){
-            notas[2] = Number(dados[i].maiorNota);
-        }
-
-        if(dados[i].nome_quiz == "Residentevil"){
-            notas[3] = Number(dados[i].maiorNota);
-        }
-
-        if(dados[i].nome_quiz == "Mortal Kombat"){
-            notas[4] = Number(dados[i].maiorNota);
-        }
-
-        if(dados[i].nome_quiz == "Naruto"){
-            notas[5] = Number(dados[i].maiorNota);
-        }
-
-
-    }
-let MaiorNota =  notas[0]
-let MenorNota = notas[0]
-   for (let i = 0; i < dados.length; i++) {
-    
-    if (MaiorNota < notas[i]) {
-        MaiorNota = notas[i]
-    }
-    kpiMaiornota.innerHTML =  MaiorNota
-   }
-  
-    
-  
-    for (let i = 0; i < dados.length; i++) {
-    
-
-    if (MenorNota > notas[i] && notas[i] != 0) {
-
-        MenorNota = notas[i]
-    }
-    kpiMenornota.innerHTML =  MenorNota
-   }
-    
-   
-    new Chart(ctx, {
-
-        type: 'bar',
-
-        data: {
-
-            labels: [
-                'Ben10',
-                'Dragonballbudokai',
-                'Godofwar',
-                'Residentevil',
-                'Mortal Kombat',
-                'Naruto'
-            ],
-
-            datasets: [{
-                label: 'Maior Nota',
-                data: notas,
-                borderWidth: 1
-            }]
-        },
-
-        options: {
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 10
+                if (dados[i].nome_quiz == "Ben10") {
+                    notas[0] = Number(dados[i].maiorNota);
                 }
+
+                if (dados[i].nome_quiz == "Dragonballbudokai") {
+                    notas[1] = Number(dados[i].maiorNota);
+                }
+
+                if (dados[i].nome_quiz == "Godofwar") {
+                    notas[2] = Number(dados[i].maiorNota);
+                }
+
+                if (dados[i].nome_quiz == "Residentevil") {
+                    notas[3] = Number(dados[i].maiorNota);
+                }
+
+                if (dados[i].nome_quiz == "Mortal Kombat") {
+                    notas[4] = Number(dados[i].maiorNota);
+                }
+
+                if (dados[i].nome_quiz == "Naruto") {
+                    notas[5] = Number(dados[i].maiorNota);
+                }
+
+
             }
-        }
-    });
+            let MaiorNota = notas[0]
+            let MenorNota = notas[0]
+            for (let i = 0; i < notas.length; i++) {
 
-})
+                if (MaiorNota < notas[i]) {
+                    MaiorNota = notas[i]
+                }
+                kpiMaiornota.innerHTML = MaiorNota
+            }
 
-.catch(function(erro){
-    console.log("Erro:", erro);
-});
+
+
+            for (let i = 0; i < notas.length; i++) {
+
+
+                if (MenorNota > notas[i] && notas[i] != 0 || MenorNota == 0) {
+
+                    MenorNota = notas[i]
+                }
+                kpiMenornota.innerHTML = MenorNota
+            }
+
+
+            new Chart(ctx, {
+
+                type: 'bar',
+
+                data: {
+
+                    labels: [
+                        'Ben10',
+                        'Dragonballbudokai',
+                        'Godofwar',
+                        'Residentevil',
+                        'Mortal Kombat',
+                        'Naruto'
+                    ],
+
+                    datasets: [{
+                        label: 'Maior Nota',
+                        data: notas,
+                        borderWidth: 1
+                    }]
+                },
+
+                options: {
+
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10
+                        }
+                    }
+                }
+            });
+
+        })
+
+        .catch(function (erro) {
+            console.log("Erro:", erro);
+        });
 
 
 

@@ -11,13 +11,19 @@
 
 <body>
 
-    <header class="header">
+    <header>
+    <div class="header">
+
         <a href="index.html" class="logo">
             <img src="./imagem/GamesLogan.png">
         </a>
-        <ul>
-        </ul>
-    </header>
+
+        <nav>
+            <a href="login.html" class="btn">Login</a>
+        </nav>
+
+    </div>
+</header>
 
     <div class="login">
         <div class="container">
@@ -63,20 +69,20 @@
 
 <script>
     function cadastrar() {
-        // aguardar(); 
+      
 
         var nomeVar = nome_input.value.trim();
         var emailVar = email_input.value.trim();
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-        // 1. Verificando se há algum campo em branco
+     
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
             exibirErro("Todos os campos devem ser preenchidos!");
             return false;
         }
 
-        // 2. Validação do Nome (ex: mínimo 3 caracteres)
+        
         if (nomeVar.length < 3) {
             exibirErro("O nome deve conter pelo menos 3 caracteres.");
             return false;
@@ -88,19 +94,19 @@
             return false;
         }
 
-        // 4. Validação da Senha (mínimo 6 caracteres)
+        
         if (senhaVar.length < 6) {
             exibirErro("A senha deve ter pelo menos 6 caracteres.");
             return false;
         }
 
-        // 5. Confirmação de senha (deve ser igual à senha)
+        
         if (senhaVar != confirmacaoSenhaVar) {
             exibirErro("A confirmação de senha deve ser igual à senha.");
             return false;
         }
 
-        // Enviando o valor da nova input
+       
         fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
@@ -136,7 +142,7 @@
         return false;
     }
 
-    // Função auxiliar para simplificar a exibição de erros
+   
     function exibirErro(mensagem) {
         cardErro.style.display = "block";
         cardErro.classList.remove("sucesso");

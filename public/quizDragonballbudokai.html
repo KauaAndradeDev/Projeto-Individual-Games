@@ -9,27 +9,27 @@
 
     <title>Dragon Ball Budokai</title>
 
-   
+
     <link rel="stylesheet" href="stylequizindividual.css">
 
 </head>
 
 <body>
-<header>
-    <div class="header">
+    <header>
+        <div class="header">
 
-        <a href="index.html" class="logo">
-            <img src="./imagem/GamesLogan.png">
-        </a>
+            <a href="index.html" class="logo">
+                <img src="./imagem/GamesLogan.png">
+            </a>
 
-        <nav>
-            <a href="./index.html">Início</a>
-            <a href="./dashboard.html">Dashboard</a>
-            <a href="#" onclick="history.back()">Voltar</a>
-        </nav>
+            <nav>
+                <a href="./index.html">Início</a>
+                <a href="./dashboard.html">Dashboard</a>
+                <a href="#" onclick="history.back()">Voltar</a>
+            </nav>
 
-    </div>
-</header>
+        </div>
+    </header>
     <div id="container">
 
         <div id="jogo" class="card">
@@ -100,7 +100,16 @@
                 Refazer Quiz
 
             </button>
+            <button onclick="dashboard()">
 
+                Dashboard
+
+            </button>
+            <button onclick="dashboard()">
+
+                Dashboard
+
+            </button>
         </div>
 
     </div>
@@ -111,135 +120,135 @@
 
 <script>
 
-if (!sessionStorage.ID_USUARIO) {
+    if (!sessionStorage.ID_USUARIO) {
 
-    alert("Faça login primeiro")
+        alert("Faça login primeiro")
 
-    window.location = "login.html"
-}
-
-const perguntas = [
-
-    {
-        pergunta: "Quem é o protagonista de Dragon Ball?",
-        opcoes: ["Vegeta", "Goku", "Gohan", "Piccolo"],
-        correta: 1
-    },
-
-    {
-        pergunta: "Qual é o rival do Goku?",
-        opcoes: ["Kuririn", "Freeza", "Vegeta", "Bills"],
-        correta: 2
-    },
-
-    {
-        pergunta: "Qual transformação deixa o cabelo dourado?",
-        opcoes: ["Kaioken", "Instinto Superior", "Ozaru", "Super Sayajin"],
-        correta: 3
-    },
-
-    {
-        pergunta: "Quem derrotou Majin Boo?",
-        opcoes: ["Vegeta", "Gohan", "Goku", "Trunks"],
-        correta: 2
-    },
-
-    {
-        pergunta: "Qual personagem usa espada?",
-        opcoes: ["Piccolo", "Kuririn", "Trunks", "Yamcha"],
-        correta: 2
+        window.location = "login.html"
     }
 
-]
+    const perguntas = [
 
-let atual = 0
+        {
+            pergunta: "Quem é o protagonista de Dragon Ball?",
+            opcoes: ["Vegeta", "Goku", "Gohan", "Piccolo"],
+            correta: 1
+        },
 
-let acertos = 0
+        {
+            pergunta: "Qual é o rival do Goku?",
+            opcoes: ["Kuririn", "Freeza", "Vegeta", "Bills"],
+            correta: 2
+        },
 
-total.innerHTML = perguntas.length
+        {
+            pergunta: "Qual transformação deixa o cabelo dourado?",
+            opcoes: ["Kaioken", "Instinto Superior", "Ozaru", "Super Sayajin"],
+            correta: 3
+        },
 
-carregarPergunta()
+        {
+            pergunta: "Quem derrotou Majin Boo?",
+            opcoes: ["Vegeta", "Gohan", "Goku", "Trunks"],
+            correta: 2
+        },
 
-function carregarPergunta() {
-
-    pergunta.innerHTML =
-    perguntas[atual].pergunta
-
-    num.innerHTML =
-    atual + 1
-
-    op1.innerHTML =
-    perguntas[atual].opcoes[0]
-
-    op2.innerHTML =
-    perguntas[atual].opcoes[1]
-
-    op3.innerHTML =
-    perguntas[atual].opcoes[2]
-
-    op4.innerHTML =
-    perguntas[atual].opcoes[3]
-}
-
-function responder() {
-
-    let opcoes =
-    document.getElementsByName("opcao")
-
-    let respostaEscolhida = -1
-
-    for (let i = 0; i < opcoes.length; i++) {
-
-        if (opcoes[i].checked) {
-
-            respostaEscolhida =
-            opcoes[i].value
+        {
+            pergunta: "Qual personagem usa espada?",
+            opcoes: ["Piccolo", "Kuririn", "Trunks", "Yamcha"],
+            correta: 2
         }
+
+    ]
+
+    let atual = 0
+
+    let acertos = 0
+
+    total.innerHTML = perguntas.length
+
+    carregarPergunta()
+
+    function carregarPergunta() {
+
+        pergunta.innerHTML =
+            perguntas[atual].pergunta
+
+        num.innerHTML =
+            atual + 1
+
+        op1.innerHTML =
+            perguntas[atual].opcoes[0]
+
+        op2.innerHTML =
+            perguntas[atual].opcoes[1]
+
+        op3.innerHTML =
+            perguntas[atual].opcoes[2]
+
+        op4.innerHTML =
+            perguntas[atual].opcoes[3]
     }
 
-    if (respostaEscolhida == -1) {
+    function responder() {
 
-        alert("Escolha uma opção!")
+        let opcoes =
+            document.getElementsByName("opcao")
 
-        return
+        let respostaEscolhida = -1
+
+        for (let i = 0; i < opcoes.length; i++) {
+
+            if (opcoes[i].checked) {
+
+                respostaEscolhida =
+                    opcoes[i].value
+            }
+        }
+
+        if (respostaEscolhida == -1) {
+
+            alert("Escolha uma opção!")
+
+            return
+        }
+
+        if (
+            respostaEscolhida ==
+            perguntas[atual].correta
+        ) {
+
+            acertos++
+        }
+
+        atual++
+
+        for (let i = 0; i < opcoes.length; i++) {
+
+            opcoes[i].checked = false
+        }
+
+        if (atual < perguntas.length) {
+
+            carregarPergunta()
+
+        } else {
+
+            finalizarJogo()
+        }
+
     }
 
-    if (
-        respostaEscolhida ==
-        perguntas[atual].correta
-    ) {
+    function finalizarJogo() {
 
-        acertos++
-    }
+        let nota =
+            (acertos / perguntas.length) * 10
 
-    atual++
+        jogo.style.display = "none"
 
-    for (let i = 0; i < opcoes.length; i++) {
+        final.style.display = "block"
 
-        opcoes[i].checked = false
-    }
-
-    if (atual < perguntas.length) {
-
-        carregarPergunta()
-
-    } else {
-
-        finalizarJogo()
-    }
-
-}
-
-function finalizarJogo() {
-
-    let nota =
-    (acertos / perguntas.length) * 10
-
-    jogo.style.display = "none"
-
-    final.style.display = "block"
-
-    resultado.innerHTML = `
+        resultado.innerHTML = `
 
     Você acertou ${acertos}
     de ${perguntas.length}
@@ -251,28 +260,34 @@ function finalizarJogo() {
 
     `
 
-    fetch("/quiz/salvarResultado", {
+        fetch("/quiz/salvarResultado", {
 
-        method: "POST",
+            method: "POST",
 
-        headers: {
+            headers: {
 
-            "Content-Type": "application/json"
-        },
+                "Content-Type": "application/json"
+            },
 
-        body: JSON.stringify({
+            body: JSON.stringify({
 
-            idUsuario:
-            sessionStorage.ID_USUARIO,
+                idUsuario:
+                    sessionStorage.ID_USUARIO,
 
-            quiz: "Dragonballbudokai",
+                quiz: "Dragonballbudokai",
 
-            nota: nota
+                nota: nota
+
+            })
 
         })
 
-    })
+    }
 
-}
+    function dashboard() {
+
+        window.location.href = "./dashboard.html"
+
+    }
 
 </script>
